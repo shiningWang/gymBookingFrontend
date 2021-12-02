@@ -88,28 +88,37 @@ class Createsession extends React.Component {
 
         this.setState({ pageTrigger: 3 })
 
-        let startTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
-            this.state.startHour, this.state.startMinute, 0);
-
-        let endTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
-            this.state.endHour, this.state.endMinute, 0);
-        // get formdata ready date etc
-
-        let durationPending = (endTimePending.getTime() - startTimePending.getTime()) / 60000;
-
-        let formData = new FormData();
-        formData.append('startTime', startTimePending.getTime());
-        formData.append('endTime', endTimePending.getTime());
-        formData.append('roomNumber', this.state.roomNumber);
-        formData.append('duration', durationPending);
-        formData.append('sessionType', this.state.currentType);
-        formData.append('attendeeLimit', this.state.attendeeLimit);
-
-        let deleteResponse = await Utils.createNewSession(formData);
-        if (deleteResponse.error) {
-            console.log(deleteResponse.message)
+        if (
+            this.state.dateDay < 0 ||
+            this.state.dateMonth < 0 ||
+            this.state.dateYear < 0 || 
+            currentType === ""
+        ) {
+            console.log("Data Not Enough")
         } else {
-            this.setState({ pageTrigger: 4 })
+            let startTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
+                this.state.startHour, this.state.startMinute, 0);
+
+            let endTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
+                this.state.endHour, this.state.endMinute, 0);
+            // get formdata ready date etc
+
+            let durationPending = (endTimePending.getTime() - startTimePending.getTime()) / 60000;
+
+            let formData = new FormData();
+            formData.append('startTime', startTimePending.getTime());
+            formData.append('endTime', endTimePending.getTime());
+            formData.append('roomNumber', this.state.roomNumber);
+            formData.append('duration', durationPending);
+            formData.append('sessionType', this.state.currentType);
+            formData.append('attendeeLimit', this.state.attendeeLimit);
+
+            let deleteResponse = await Utils.createNewSession(formData);
+            if (deleteResponse.error) {
+                console.log(deleteResponse.message)
+            } else {
+                this.setState({ pageTrigger: 4 })
+            }
         }
     }
 
