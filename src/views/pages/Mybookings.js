@@ -21,10 +21,15 @@ class Mybookings extends React.Component {
             bookedSessionIndex: null,
             selectedSession: null,
 
+            // index list
+            // 1 is loading screen
+            // 2 is rendered page
+            // 3 is go to book new session page
             pageTrigger: 1,
         };
         this.myBookingsSessionsRequest = this.myBookingsSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
+        this.goToBookSessionsPage = this.goToBookSessionsPage.bind(this);
     }
 
     componentDidMount() {
@@ -69,6 +74,10 @@ class Mybookings extends React.Component {
                 this.setState({ pageTrigger: 2})
             })
         }
+    }
+
+    goToBookSessionsPage() {
+        this.setState({ pageTrigger: 3 })
     }
 
     render() {
@@ -116,9 +125,9 @@ class Mybookings extends React.Component {
                             }
 
                             { this.state.bookedSessionData === 0 && 
-                                <div>
-                                    <div>No Booking Has Been Made</div>
-                                    <div>Booking Now</div>
+                                <div className="myBookingsNullHolder">
+                                    <div className="myBookingsNullTitle">No Booking Has Been Made</div>
+                                    <div className="myBookingsNullButton" onClick={this.goToBookSessionsPage}>Book Now</div>
                                 </div>
                             }
                         </div>
@@ -126,6 +135,10 @@ class Mybookings extends React.Component {
                     {this.state.selectedSession != null && <Withdraw session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     <Menu currentUserData={this.props.currentUserData} />
                 </React.Fragment>
+            )
+        } else if (this.state.pageTrigger === 3) {
+            return(
+                <Navigate to="/sessions" />
             )
         }
     }
