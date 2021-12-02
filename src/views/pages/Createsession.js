@@ -92,7 +92,7 @@ class Createsession extends React.Component {
             this.state.dateDay < 0 ||
             this.state.dateMonth < 0 ||
             this.state.dateYear < 0 || 
-            currentType === ""
+            this.state.currentType === ""
         ) {
             console.log("Data Not Enough")
         } else {
