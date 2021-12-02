@@ -15,11 +15,24 @@
     height: fit-content;
 }
 
-.homeHolder {
+.rootHolder {
     width: 100vw;
-    height: 100vh;
-    min-height: 480px;
+    height: 100%;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.rootHolder::-webkit-scrollbar {
+    display: none;
+}
+
+.homeHolder {
+    width: 100%;
+    min-height: 480px;
 
     display: flex;
     justify-content: center;
@@ -27,18 +40,12 @@
     flex-wrap: wrap;
     flex-direction: column;
 
-    position: fixed;
+    position: absolute;
     z-index: -10;
 
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
-.homeHolder::-webkit-scrollbar {
-    display: none;
-}
 
 .greetingHolder {
     width: 35%;
