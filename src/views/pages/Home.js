@@ -87,7 +87,7 @@ class Home extends React.Component {
         } else if (this.state.availableSessions === null) {
             return (
                 <div className="pageLoadingScreenHolder">
-                        <div className="pageLoading"><img src={loadingImg} /></div>
+                    <div className="pageLoading"><img src={loadingImg} /></div>
                 </div>
             )
         } else {
@@ -157,8 +157,8 @@ class Home extends React.Component {
                                 }
                             </div>
                         </div>
+                        {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     </div>
-                    {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     <Menu currentUserData={this.props.currentUserData} />
                 </React.Fragment>
             )
