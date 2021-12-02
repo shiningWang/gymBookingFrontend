@@ -1,7 +1,7 @@
 class Utils {
 
     constructor() {
-        this.apiBase = "http://localhost:3000"
+        this.apiBase = "https://gymbookingbackend.herokuapp.com"
     }
 
     testReturn() {
