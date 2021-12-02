@@ -3,27 +3,19 @@
 
 .myBookingsScreenHolder {
     width: 100vw;
-    height: 100vh;
-    min-height: 480px;
 
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
 
-    position: fixed;
+    position: absolute;
     z-index: -10;
 
     overflow-y: scroll;
 
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.myBookingsScreenHolder::-webkit-scrollbar {
-    display: none;
 }
 
 .myBookingsHeaderHolder {

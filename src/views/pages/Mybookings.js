@@ -50,7 +50,7 @@ class Mybookings extends React.Component {
         let sessionResult = await Utils.findBookedSession(this.props.currentUserData._id);
         if (sessionResult.error) {
             this.setState({ bookedSessionData: 0, bookedSessionIndex: 0 }, () => {
-                this.setState({ pageTrigger: 2})
+                this.setState({ pageTrigger: 2 })
             })
         } else {
             let pendingSortDate = {};
@@ -71,7 +71,7 @@ class Mybookings extends React.Component {
             });
             let pSDT = Object.keys(pendingSortDate);
             this.setState({ bookedSessionData: pendingSortDate, bookedSessionIndex: pSDT }, () => {
-                this.setState({ pageTrigger: 2})
+                this.setState({ pageTrigger: 2 })
             })
         }
     }
@@ -85,7 +85,7 @@ class Mybookings extends React.Component {
             console.log(this.state.pageTrigger)
             return (
                 <div className="pageLoadingScreenHolder">
-                        <div className="pageLoading"><img src={loadingImg} /></div>
+                    <div className="pageLoading"><img src={loadingImg} /></div>
                 </div>
             )
         } else if (this.state.pageTrigger === 2) {
@@ -99,7 +99,7 @@ class Mybookings extends React.Component {
                         </div>
 
                         <div className="allBookedSessions">
-                            { this.state.bookedSessionData != 0 &&
+                            {this.state.bookedSessionData != 0 &&
                                 this.state.bookedSessionIndex.map((index) => (
                                     <div className="sessionDateHolder" key={index}>
                                         <div className="sessionDateHeader">{Utils.sessionTime(this.state.bookedSessionData[index][0].startTime)}</div>
@@ -124,20 +124,20 @@ class Mybookings extends React.Component {
                                 ))
                             }
 
-                            { this.state.bookedSessionData === 0 && 
+                            {this.state.bookedSessionData === 0 &&
                                 <div className="myBookingsNullHolder">
                                     <div className="myBookingsNullTitle">No Booking Has Been Made</div>
                                     <div className="myBookingsNullButton" onClick={this.goToBookSessionsPage}>Book Now</div>
                                 </div>
                             }
                         </div>
+                        {this.state.selectedSession != null && <Withdraw session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                        <Menu currentUserData={this.props.currentUserData} />
                     </div>
-                    {this.state.selectedSession != null && <Withdraw session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
-                    <Menu currentUserData={this.props.currentUserData} />
                 </React.Fragment>
             )
         } else if (this.state.pageTrigger === 3) {
-            return(
+            return (
                 <Navigate to="/sessions" />
             )
         }
