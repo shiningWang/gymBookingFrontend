@@ -48,7 +48,8 @@ class Personal extends React.Component {
             console.log(sessionResult.message)
         } else {
             let pendingSortDate = {};
-            sessionResult.forEach(session => {
+            let sortedSessionResult = sessionResult.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
+            sortedSessionResult.map(session => {
                 let dateTime = new Date(session.startTime);
                 let dDate = dateTime.getUTCDate();
                 let dDateStr = "";

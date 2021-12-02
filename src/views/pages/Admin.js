@@ -56,7 +56,8 @@ class Admin extends React.Component {
             this.setState({ adminSessionsData: 0, adminSessionIndex: 0, pageTrigger: 2 })
         } else {
             let pendingSortDate = {};
-            allSessions.forEach(session => {
+            let sortedSessionResult = allSessions.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
+            sortedSessionResult.map(session => {
                 let dateTime = new Date(session.startTime);
                 let dDate = dateTime.getUTCDate();
                 let dDateStr = "";
