@@ -15,6 +15,7 @@ import yogaCharImg from '../../images/yogaChar.svg';
 import personalCharImg from '../../images/personalChar.svg';
 
 import bookingFailImg from '../../images/bookingFail.svg';
+import loadingImg from '../../images/loading.svg';
 
 import Calendar from './Calendar';
 
@@ -105,7 +106,7 @@ class Createsession extends React.Component {
         formData.append('attendeeLimit', this.state.attendeeLimit);
 
         let deleteResponse = await Utils.createNewSession(formData);
-        if (!deleteResponse.error) {
+        if (deleteResponse.error) {
             console.log(deleteResponse.message)
         } else {
             this.setState({ pageTrigger: 4 })
