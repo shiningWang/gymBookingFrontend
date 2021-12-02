@@ -11,6 +11,8 @@ import yogaImg from '../../images/yoga.svg';
 import personalImg from '../../images/personal.svg';
 import more from '../../images/more.svg';
 
+import loadingImg from '../../images/loading.svg';
+
 class Mybookings extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +20,8 @@ class Mybookings extends React.Component {
             bookedSessionData: null,
             bookedSessionIndex: null,
             selectedSession: null,
+
+            pageTrigger: 1,
         };
         this.myBookingsSessionsRequest = this.myBookingsSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
@@ -32,15 +36,15 @@ class Mybookings extends React.Component {
     }
 
     clearSelectedSession() {
-        this.setState({ selectedSession: null })
+        this.setState({ pageTrigger: 1 }, this.myBookingsSessionsRequest())
     }
 
     async myBookingsSessionsRequest() {
         let sessionResult = await Utils.findBookedSession(this.props.currentUserData._id);
-        console.log(sessionResult)
         if (sessionResult.error) {
-            console.log(sessionResult.message)
-            this.setState({ bookedSessionData: 0, bookedSessionIndex: 0 })
+            this.setState({ bookedSessionData: 0, bookedSessionIndex: 0 }, () => {
+                this.setState({ pageTrigger: 2})
+            })
         } else {
             let pendingSortDate = {};
             sessionResult.forEach(session => {
@@ -60,18 +64,19 @@ class Mybookings extends React.Component {
             });
             let pSDT = Object.keys(pendingSortDate);
             this.setState({ bookedSessionData: pendingSortDate, bookedSessionIndex: pSDT }, () => {
-                console.log(this.state.bookedSessionData)
-                console.log( typeof this.state.bookedSessionIndex)
+                this.setState({ pageTrigger: 2})
             })
         }
     }
 
     render() {
-        if (this.state.bookedSessionData === null || this.state.bookedSessionIndex === null) {
+        if (this.state.pageTrigger === 1) {
             return (
-                <div>Loading</div>
+                <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
+                </div>
             )
-        } else {
+        } else if (this.state.pageTrigger === 2) {
             return (
                 <React.Fragment>
                     <div className="myBookingsScreenHolder">

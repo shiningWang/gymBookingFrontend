@@ -4,6 +4,8 @@ import Utils from '../../Utils';
 
 import '../scss/Account.scss'
 
+import loadingImg from '../../images/loading.svg';
+
 
 class Account extends React.Component {
 
@@ -41,12 +43,15 @@ class Account extends React.Component {
     async handleSignInSubmit(event) {
         event.preventDefault();
 
+        this.setState({ pageTrigger: 3 })
+
         let formData = new FormData();
         formData.append('email', this.state.loginEmail);
         formData.append('password', this.state.loginPassword);
 
         let currentUserData = await Utils.signIn(formData);
         if (!currentUserData.error) {
+            this.setState({pageTrigger: 1});
             this.props.updateCurrentUserData(currentUserData.userCredit);
         } else {
             console.log(currentUserData.error.message)
@@ -55,6 +60,8 @@ class Account extends React.Component {
 
     async handleSignUpSubmit(event) {
         event.preventDefault();
+
+        this.setState({ pageTrigger: 3 })
 
         const passwd = this.state.clientPassword;
         const passwdre = this.state.clientConfirmPassword;
@@ -71,7 +78,8 @@ class Account extends React.Component {
                     pageTrigger: 1,
                 })
             } else {
-                console.log(signUpData.error.message)
+                this.setState({ pageTrigger: 2});
+                console.log(signUpData.error.message);
             }
         }
     }
@@ -147,6 +155,12 @@ class Account extends React.Component {
                         </div>
                     </div>
                 </React.Fragment>
+            )
+        } else if ( this.state.pageTrigger === 3 ) {
+            return(
+                <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
+                </div>
             )
         } else if (this.state.pageTrigger === 4) {
             return (

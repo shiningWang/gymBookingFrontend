@@ -11,6 +11,8 @@ import yogaImg from '../../images/yoga.svg';
 import personalImg from '../../images/personal.svg';
 import more from '../../images/more.svg';
 
+import loadingImg from '../../images/loading.svg';
+
 class Home extends React.Component {
 
     constructor(props) {
@@ -84,7 +86,9 @@ class Home extends React.Component {
             )
         } else if (this.state.availableSessions === null) {
             return (
-                <div>loading</div>
+                <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
+                </div>
             )
         } else {
             return (

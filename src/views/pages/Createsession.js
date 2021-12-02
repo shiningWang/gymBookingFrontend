@@ -228,10 +228,8 @@ class Createsession extends React.Component {
                 )
             } else if (this.state.pageTrigger === 3) {
                 return (
-                    <div className="viewSessionHolder">
-                        <div className="viewSessionBlock">
-                            <div className="bookingLoading"><img src={loadingImg} /></div>
-                        </div>
+                    <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
                     </div>
                 )
             } else if (this.state.pageTrigger === 4) {

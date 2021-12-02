@@ -39,9 +39,9 @@ class Withdraw extends React.Component {
         Utils.cancelBooking(this.props.session._id, this.props.currentUserData._id)
             .then(res => {
                 if (!res.error) {
-                    this.setState({ confirmedBooking: res }, () => { this.setState({ pageTrigger: 3 }) })
+                    this.setState({ confirmedWithdraw : res }, () => { this.setState({ pageTrigger: 3 }) })
                 } else {
-                    this.setState({ failedBooking: res }, () => { this.setState({ pageTrigger: 4 }) })
+                    this.setState({ failedWithdraw : res }, () => { this.setState({ pageTrigger: 4 }) })
                 }
             })
     }
@@ -83,6 +83,38 @@ class Withdraw extends React.Component {
                         <div className="viewSessionButtons">
                             <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
                             <button className="makeBookingButton" onClick={() => { this.withdrawBooking() }} >Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            )
+        } else if (this.state.pageTrigger === 3) {
+            return (
+                <div className="viewSessionHolder">
+                    <div className="viewSessionBlock">
+                        <div className="sessionBookingSuccess">
+                            <div className="bookingSuccessIcon"><img src={confirmedImg} /></div>
+                            <div className="bookingSuccessTitle">Cancel Success!</div>
+                        </div>
+
+                        <div className="viewSessionButtons">
+                            <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            )
+        } else if (this.state.pageTrigger === 4) {
+            return (
+                <div className="viewSessionHolder">
+                    <div className="viewSessionBlock">
+                        <div className="sessionBookingFail">
+                            <div className="bookingFailIcon"><img src={bookingFailImg} /></div>
+                            <div className="bookingFailTitle">Cancel Fail</div>
+                        </div>
+                        <div className="bookingFailMessage">{this.state.failedWithdraw.message}</div>
+
+                        <div className="viewSessionButtons">
+                            <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
                         </div>
                     </div>
                 </div>
