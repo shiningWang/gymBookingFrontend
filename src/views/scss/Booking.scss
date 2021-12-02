@@ -1,0 +1,137 @@
+// this overlay section z-index should be 500
+
+.viewSessionHolder {
+    width: 100%;
+    height: 100%;
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(38, 19, 76, .5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    z-index: 500;
+}
+
+.viewSessionBlock {
+    width: 35%;
+    min-width: 315px;
+    max-width: 350px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-radius: 0 2em 0 2em;
+    margin: 0.5em;
+    background-color: rgba($color: #ffffff, $alpha: 0.7);
+    filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
+}
+
+.viewSessionHeaderHolder {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .viewSessionIcon {
+        width: 80%;
+        img {
+            width: 100%;
+        }
+    }
+    .viewSessionTitle {
+        font-size: large;
+    }
+}
+
+.bookingDayTime {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.viewSessionButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+
+    .returnButton, .makeBookingButton {
+        width: 35%;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        height: 2.5em;
+        border-radius: 1em;
+        border: none;
+        background-color: #01C8DC;
+        color: #ffffff;
+        cursor: pointer;
+    }
+}
+
+.sessionBookingFail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+
+    .bookingFailIcon {
+        width: 80%;
+        img {
+            width: 100%;
+        }
+    }
+    .bookingFailTitle {
+        font-size: large;
+    }
+}
+
+.sessionBookingSuccess {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+
+    .bookingSuccessIcon {
+        width: 80%;
+        img {
+            width: 100%;
+        }
+    }
+    .bookingSuccessTitle {
+        font-size: large;
+    }
+}
+
+.bookingFailMessage {
+    width: 80%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bookingLoading {
+    width: 100%;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .viewSessionHolder {
+        width: 100%;
+    }
+
+    .viewSessionBlock {
+        width: 80%;
+    }
+}

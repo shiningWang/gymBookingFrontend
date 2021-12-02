@@ -1,0 +1,515 @@
+// z-index 
+
+// createSessionHeaderHolder     95
+// calendarSection             85
+// createSessionTypeHolder      85
+// createSessionScreenHolder        -10
+
+
+.createSessionScreenHolder {
+    width: 100vw;
+    height: 100vh;
+    min-height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    position: fixed;
+    z-index: -10;
+
+    overflow-y: scroll;
+
+    background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.createSessionScreenHolder::-webkit-scrollbar {
+    display: none;
+}
+
+.createSessionHeaderHolder {
+    width: 35%;
+    min-width: 435px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    position: relative;
+    z-index: 95;
+
+    border-radius: 0 2em 0 2em;
+    margin: 0.5em;
+
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
+    filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
+
+    .createSessionHeaderTitle {
+        font-size: x-large;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    };
+}
+
+.calendarSection {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0.5em;
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
+    border-radius: 0 2em 0 2em;
+
+    position: relative;
+    z-index: 85;
+
+    .calendarHolder {
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 320px;
+        max-width: 435px;
+    }
+}
+
+.sessionTimeHolder {
+    width: 35%;
+    min-width: 435px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-radius: 0 2em 0 2em;
+    margin: 0.5em;
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
+    filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
+
+    display: flex;
+    flex-direction: column;
+
+    .timeForm {
+        width: 90%;
+        max-width: 435px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        
+        .formSection {
+            width: 100%;
+            margin-bottom: 1em;
+
+            display: flex;
+            flex-direction: row;
+
+            .startTimeForm {
+                width: 50%;
+                .startTimeFormInput {
+                    width: 90%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: flex;
+                    flex-direction: row;
+                    .inputText {
+                        width: 30%;
+                        font-size: larger;
+                        text-align: center;
+                    }
+                    input {
+                        width: 27%;
+                        padding-left: 3%;
+                        padding-right: 3%;
+                        margin-right: 2% ;
+
+                        border: none;
+                        border-bottom: 1px solid #c9c9c9;
+                        outline: none;
+                        border-radius: 2em;
+                    }
+                    input:focus {
+                        border-bottom: 1px solid #01C8DC;
+                    }
+                }
+            }
+            .endTimeForm {
+                width: 50%;
+                .endTimeFormInput {
+                    width: 90%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: flex;
+                    flex-direction: row;
+                    .inputText {
+                        width: 33%;
+                        font-size: larger;
+                        text-align: center;
+                    }
+                    input {
+                        width: 27%;
+                        padding-left: 3%;
+                        padding-right: 3%;
+                        margin-right: 2% ;
+
+                        border: none;
+                        border-bottom: 1px solid #c9c9c9;
+                        outline: none;
+                        border-radius: 2em;
+                    }
+                    input:focus {
+                        border-bottom: 1px solid #01C8DC;
+                    }
+                }
+            }
+        }
+        .projectConfirmButton {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+
+            input {
+                width: 50%;
+                height: 2em;
+
+                font-size: medium;
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+
+                border-radius: 3em;
+                border: none;
+                background-color: #01C8DC;
+                color: #ffffff;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.createSessionTypeHolder {
+    width: 35%;
+    min-width: 435px;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0.5em;
+
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
+    border-radius: 0 2em 0 2em;
+
+    position: relative;
+    z-index: 85;
+
+    .TypeImgHolder {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1em;
+
+        text-align: center;
+        img {
+            width: 100%;
+            max-width: 305px;
+        }
+    }
+
+    .typePickerHolder {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0.5em;
+        background: white;
+        border-radius: 3em;
+        .typeButton {
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
+            border-radius: 3em;
+        }
+        .typeButtonActive {
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            background: linear-gradient(to right bottom, #A36FE4, #297FD9);
+            border-radius: 3em;
+            color: white;
+        }
+    }
+}
+
+.createSessionStoreHolder {
+    width: 35%;
+    min-width: 435px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-radius: 0 2em 0 2em;
+    margin: 0.5em;
+    background-color: rgba($color: #ffffff, $alpha: 0.8);
+    filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
+
+    display: flex;
+    flex-direction: column;
+
+    .timeForm {
+        width: 90%;
+        max-width: 435px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        
+        .formSection {
+            width: 100%;
+            margin-bottom: 1em;
+
+            display: flex;
+            flex-direction: row;
+
+            .startTimeForm {
+                width: 50%;
+                .startTimeFormInput {
+                    width: 90%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: flex;
+                    flex-direction: row;
+                    .inputText {
+                        width: 50%;
+                        font-size: larger;
+                        text-align: center;
+                    }
+                    input {
+                        width: 40%;
+                        margin-left: 2%;
+                        padding-left: 3%;
+                        margin-right: 2%;
+                        padding-right: 3%;
+
+                        border: none;
+                        border-bottom: 1px solid #c9c9c9;
+                        outline: none;
+                        border-radius: 2em;
+                    }
+                    input:focus {
+                        border-bottom: 1px solid #01C8DC;
+                    }
+                }
+            }
+            .endTimeForm {
+                width: 50%;
+                .endTimeFormInput {
+                    width: 90%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: flex;
+                    flex-direction: row;
+                    .inputText {
+                        width: 30%;
+                        font-size: larger;
+                        text-align: center;
+                    }
+                    input {
+                        width: 60%;
+                        margin-left: 2%;
+                        padding-left: 3%;
+                        margin-right: 2%;
+                        padding-right: 3%;
+
+                        border: none;
+                        border-bottom: 1px solid #c9c9c9;
+                        outline: none;
+                        border-radius: 2em;
+                    }
+                    input:focus {
+                        border-bottom: 1px solid #01C8DC;
+                    }
+                }
+            }
+        }
+        .projectConfirmButton {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                width: 35%;
+                margin-left: 3%;
+                margin-right: 3%;
+
+                font-size: medium;
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+
+                border-radius: 3em;
+                border: none;
+                background-color: #01C8DC;
+                color: #ffffff;
+                cursor: pointer;
+            }
+
+            .backToTimeSelection {
+                width: 35%;
+                margin-left: 3%;
+                margin-right: 3%;
+
+                font-size: medium;
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+
+                border-radius: 3em;
+                border: none;
+                background-color: #01C8DC;
+                color: #ffffff;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .createSessionScreenHolder {
+        background: rgba(219, 216, 202, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        background: linear-gradient(to right bottom, #A36FE4, #297FD9);
+    }
+
+    .createSessionHeaderHolder {
+        width: 100%;
+        min-width: 320px;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border-radius: 0 0 0 2em;
+        margin: 0;
+
+        position: relative;
+
+        background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
+        .createSessionHeaderTitle {
+            width: 70%;
+        };
+    }
+
+    .calendarSection {
+        width: 100%;
+        padding-top: 5em;
+        margin-top: -4em;
+
+        .calendarHolder {
+            width: 90%;
+            border-radius: 0 0 0 2em;
+            position: relative;
+        }
+    }
+
+    .sessionTimeHolder {
+        width: 100%;
+        padding-top: 5em;
+        margin-top: -2em;
+        padding-bottom: 1em;
+        border-radius: 0 0 0 2em;
+
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+
+        position: relative;
+        z-index: 75;
+
+        background: none;
+    }
+
+    .timeForm {
+        width: 90%;
+        max-width: 435px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        
+        .formSection {
+            .startTimeForm {
+                .startTimeFormInput {
+                    .inputText {
+                        color: white;
+                        font-size: larger;
+                    }
+                }
+            }
+            .endTimeForm {
+                .endTimeFormInput {
+                    .inputText {
+                        color: white;
+                        font-size: larger;
+                    }
+                    
+                }
+            }
+        }
+        .projectConfirmButton {
+            input {
+                font-size: medium;
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+            }
+        }
+    }
+
+    .createSessionTypeHolder {
+        width: 100%;
+        min-width: 320px;
+        padding-top: 5em;
+        margin-top: -4em;
+    }
+    
+    .createSessionStoreHolder {
+        width: 100%;
+        padding-top: 5em;
+        margin-top: -2em;
+        padding-bottom: 1em;
+        border-radius: 0 0 0 2em;
+
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+
+        position: relative;
+        z-index: 75;
+
+        background: none;
+
+        .timeForm {
+            .formSection {
+                flex-direction: column;
+                .startTimeForm {
+                    width: 70%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 0.2em;
+                    margin-bottom: 0.2em;
+                }
+                .endTimeForm {
+                    width: 70%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 0.2em;
+                    margin-bottom: 0.2em;
+                }
+            }
+        }
+    }
+}

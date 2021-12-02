@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <filter id="Rectangle_505" x="0" y="0" width="58" height="58" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Component_9_1" data-name="Component 9 – 1" transform="translate(9 6)">
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Rectangle_505)">
+      <rect id="Rectangle_505-2" data-name="Rectangle 505" width="40" height="40" rx="20" transform="translate(9 6)" fill="#01c8dc"/>
+    </g>
+    <g id="more-o" transform="translate(5.5 5)">
+      <path id="Path_249" data-name="Path 249" d="M9.958,19.917A2.458,2.458,0,1,0,7.5,17.458,2.458,2.458,0,0,0,9.958,19.917Z" transform="translate(-1.354 -2.708)" fill="#fff"/>
+      <path id="Path_250" data-name="Path 250" d="M19.917,17.458A2.458,2.458,0,1,1,17.458,15,2.458,2.458,0,0,1,19.917,17.458Z" transform="translate(-2.708 -2.708)" fill="#fff"/>
+      <path id="Path_251" data-name="Path 251" d="M24.958,19.917A2.458,2.458,0,1,0,22.5,17.458,2.458,2.458,0,0,0,24.958,19.917Z" transform="translate(-4.063 -2.708)" fill="#fff"/>
+      <path id="Path_252" data-name="Path 252" d="M29.5,14.75A14.75,14.75,0,1,1,14.75,0,14.75,14.75,0,0,1,29.5,14.75Zm-2.458,0A12.292,12.292,0,1,1,14.75,2.458,12.292,12.292,0,0,1,27.042,14.75Z" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

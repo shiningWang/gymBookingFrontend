@@ -1,0 +1,107 @@
+.menuBarImgHolder {
+    width: fit-content;
+    position: absolute;
+    z-index: 900;
+    right: 2em;
+    top: 2em;
+    img {
+        width: 2em;
+        height: 2em;
+    }
+}
+
+.menuPage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 850;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(38, 19, 76, .5);
+}
+
+.menuHeader {
+    width: 35%;
+    min-width: 315px;
+    margin-top: 15vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .menuTitle {
+        width: 80%;
+        font-size: xx-large;
+        color: white;
+    }
+    .menuUserEmail {
+        width: 80%;
+        font-size: medium;
+        color: white;
+    }
+}
+
+.menuButtonsHolder {
+    width: 35%;
+    min-width: 315px;
+
+    margin-top: 1em;
+
+    nav {
+        width: 100%;
+        a {
+            display: flex;
+            justify-content: center;
+
+            .navButtonActive {
+                width: 80%;
+                height: 2em;
+                padding-top: 0.25em;
+                padding-bottom: 0.25em;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+                border-radius: 4em;
+                margin-top: 1em;
+                border: none;
+        
+                background-color: #01C8DC;
+                color: #ffffff;
+                .menuTitle {
+                    width: 50%;
+                    text-align: center;
+                }
+            }
+        
+            .navButton {
+                width: 80%;
+                height: 2em;
+                padding-top: 0.25em;
+                padding-bottom: 0.25em;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+                border-radius: 4em;
+                margin-top: 1em;
+                border: none;
+        
+                background-color: #9599B3;
+                color: #ffffff;
+                .menuTitle {
+                    width: 50%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
+}

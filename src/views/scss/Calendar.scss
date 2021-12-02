@@ -1,0 +1,65 @@
+.calendarHolder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .calendarDisplay {
+        width: 90%;
+        .calendarShowMonth {
+            font-size: larger;
+            margin-bottom: 0.5em;
+            text-align: center;
+        }
+        .calendarHeader {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .weekDay {
+                min-width: 14.2%;
+                text-align: center;
+                margin-top: 0.25em;
+                margin-bottom: 0.25em;
+            }
+        }
+        .calendarBody {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .weekSpace {
+                min-width: 14.2%;
+                text-align: center;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+            }
+            .weekSpaceActive {
+                min-width: 14.2%;
+                text-align: center;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+                background: linear-gradient(to right bottom, #A36FE4, #297FD9);
+                border-radius: 3em;
+                color: white;
+            }
+        }
+    }
+    .lastMonth {
+        width: 5%;
+        display: flex;
+        justify-content: center;
+        img {
+            width: 80%;
+            max-width: 20px;
+        }
+    }
+    .nextMonth {
+        width: 5%;
+        display: flex;
+        justify-content: center;
+        img {
+            width: 80%;
+            max-width: 20px;
+        }
+    }
+}
+
