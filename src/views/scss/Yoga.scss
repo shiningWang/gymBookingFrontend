@@ -5,28 +5,18 @@
 // sessionsScreenHolder     -10
 
 .yogaScreenHolder {
-    width: 100vw;
-    height: 100vh;
-    min-height: 480px;
-    min-width: 320px;
+    width: 100%;
 
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
 
-    position: fixed;
+    position: absolute;
     z-index: -10;
 
-    overflow-y: scroll;
-
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.yogaScreenHolder::-webkit-scrollbar {
-    display: none;
 }
 
 .yogaHeaderHolder {

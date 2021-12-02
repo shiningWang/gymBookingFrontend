@@ -13,7 +13,6 @@
 
 .homeHolder {
     width: 100%;
-    min-height: 480px;
 
     display: flex;
     justify-content: center;
@@ -25,8 +24,8 @@
     z-index: -10;
 
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
-}
 
+}
 
 .greetingHolder {
     width: 35%;
@@ -167,7 +166,6 @@
     width: 100vw;
     height: 100vh;
     min-height: 480px;
-    overflow-y: scroll;
 
     display: flex;
     justify-content: center;

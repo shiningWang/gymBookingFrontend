@@ -72,7 +72,7 @@ class Personal extends React.Component {
         if (this.state.personalSessionData === null || this.state.personalSessionIndex === null) {
             return (
                 <div className="pageLoadingScreenHolder">
-                        <div className="pageLoading"><img src={loadingImg} /></div>
+                    <div className="pageLoading"><img src={loadingImg} /></div>
                 </div>
             )
         } else {
@@ -114,9 +114,9 @@ class Personal extends React.Component {
                                 ))
                             }
                         </div>
+                        {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                        <Menu currentUserData={this.props.currentUserData} />
                     </div>
-                    {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
-                    <Menu currentUserData={this.props.currentUserData} />
                 </React.Fragment>
             )
         }

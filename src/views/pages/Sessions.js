@@ -59,10 +59,8 @@ class Sessions extends React.Component {
                             <Link style={{ textDecoration: "none" }} to="/personal"><div className="sessionInfoButton">View Sessions</div></Link>
                         </div>
                     </div>
-
+                    <Menu currentUserData={this.props.currentUserData} />
                 </div>
-
-                <Menu currentUserData={this.props.currentUserData} />
             </React.Fragment>
         )
     }
