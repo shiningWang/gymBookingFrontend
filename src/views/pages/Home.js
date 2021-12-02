@@ -93,75 +93,76 @@ class Home extends React.Component {
         } else {
             return (
                 <React.Fragment>
-                    <div className="rootHolder">
-                        <div className="homeHolder">
-                            <div className="greetingHolder">
-                                <div className="greetingTitle">Good Day!</div>
-                                <div className="greetingUserName">{this.props.currentUserData.firstName}</div>
-                            </div>
-                            <div className="exerciseHistory">
-                                <div className="historyTitle">Summary</div>
-                                <div className="histroyIntro">Your excerise this week</div>
-                                <div className="typeHolder">
-                                    <div className="typeImageHolder">
-                                        <img src={groupImg} />
-                                    </div>
-                                    <div className="typeHistoryInfo">
-                                        <div className="typeTime">30mins</div>
-                                        <div className="typeCategory">Group Fitness Sessions</div>
-                                    </div>
+                    <div className="homeHolder">
+                        <div className="greetingHolder">
+                            <div className="greetingTitle">Good Day!</div>
+                            <div className="greetingUserName">{this.props.currentUserData.firstName}</div>
+                        </div>
+                        <div className="exerciseHistory">
+                            <div className="historyTitle">Summary</div>
+                            <div className="histroyIntro">Your excerise this week</div>
+                            <div className="typeHolder">
+                                <div className="typeImageHolder">
+                                    <img src={groupImg} />
                                 </div>
-                                <div className="typeHolder">
-                                    <div className="typeImageHolder">
-                                        <img src={yogaImg} />
-                                    </div>
-                                    <div className="typeHistoryInfo">
-                                        <div className="typeTime">60mins</div>
-                                        <div className="typeCategory">Yoga Sessions</div>
-                                    </div>
-                                </div>
-                                <div className="typeHolder">
-                                    <div className="typeImageHolder">
-                                        <img src={personalImg} />
-                                    </div>
-                                    <div className="typeHistoryInfo">
-                                        <div className="typeTime">60mins</div>
-                                        <div className="typeCategory">Personal Training Sessions</div>
-                                    </div>
+                                <div className="typeHistoryInfo">
+                                    <div className="typeTime">30mins</div>
+                                    <div className="typeCategory">Group Fitness Sessions</div>
                                 </div>
                             </div>
-                            <div className="upcomingClass">
-                                <div className="homeClassScrollHolder">
-                                    <div className="classTitle">Upcoming Classes</div>
-                                    <div className="classIntro">Secure the slot now!</div>
-                                    {
-                                        this.state.availableSessions.length != 0 &&
-                                        this.state.availableSessions.map((session) => (
-                                            <div className="sessionBlock" key={session._id}>
-                                                {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
-                                                {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
-                                                {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
-                                                <div className="sessionBlockDetail">
-                                                    {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
-                                                    {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
-                                                    {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
-                                                    <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
-                                                    <div>Room: {session.roomNumber}</div>
-                                                </div>
-                                                <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
-                                            </div>
-                                        ))
-                                    }
-                                    {
-                                        this.state.availableSessions.length === 0 &&
-                                        <div className="emptySession">No Future Booking Available Now</div>
-                                    }
+                            <div className="typeHolder">
+                                <div className="typeImageHolder">
+                                    <img src={yogaImg} />
+                                </div>
+                                <div className="typeHistoryInfo">
+                                    <div className="typeTime">60mins</div>
+                                    <div className="typeCategory">Yoga Sessions</div>
+                                </div>
+                            </div>
+                            <div className="typeHolder">
+                                <div className="typeImageHolder">
+                                    <img src={personalImg} />
+                                </div>
+                                <div className="typeHistoryInfo">
+                                    <div className="typeTime">60mins</div>
+                                    <div className="typeCategory">Personal Training Sessions</div>
                                 </div>
                             </div>
                         </div>
+                        <div className="upcomingClass">
+                            <div className="homeClassScrollHolder">
+                                <div className="classTitle">Upcoming Classes</div>
+                                <div className="classIntro">Secure the slot now!</div>
+                                {
+                                    this.state.availableSessions.length != 0 &&
+                                    this.state.availableSessions.map((session) => (
+                                        <div className="sessionBlock" key={session._id}>
+                                            {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
+                                            {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
+                                            {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
+                                            <div className="sessionBlockDetail">
+                                                {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
+                                                {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
+                                                {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
+                                                <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
+                                                <div>Room: {session.roomNumber}</div>
+                                            </div>
+                                            <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
+                                        </div>
+                                    ))
+                                }
+                                {
+                                    this.state.availableSessions.length === 0 &&
+                                    <div className="emptySession">No Future Booking Available Now</div>
+                                }
+                            </div>
+
+                        </div>
+                        <Menu currentUserData={this.props.currentUserData} />
                         {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     </div>
-                    <Menu currentUserData={this.props.currentUserData} />
+                    
+
                 </React.Fragment>
             )
         }

@@ -10,10 +10,10 @@
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     position: absolute;
-    z-index: 600;
+    z-index: 500;
 }
 
 .viewSessionBlock {
@@ -23,7 +23,9 @@
     padding-top: 2em;
     padding-bottom: 2em;
     border-radius: 0 2em 0 2em;
-    margin: 0.5em;
+    
+    margin-top: 15vh;
+
     background-color: rgba($color: #ffffff, $alpha: 0.7);
     filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
 }
@@ -129,6 +131,8 @@
 @media screen and (max-width: 768px) {
     .viewSessionHolder {
         width: 100%;
+        top: 0;
+        margin: 0;
     }
 
     .viewSessionBlock {

@@ -11,25 +11,6 @@
 // background: linear-gradient(to right bottom, #DDC4FC, #91C5FC)
 // background: linear-gradient(to right bottom, #A36FE4, #297FD9)
 
-#root {
-    height: fit-content;
-}
-
-.rootHolder {
-    width: 100vw;
-    height: 100%;
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.rootHolder::-webkit-scrollbar {
-    display: none;
-}
-
 .homeHolder {
     width: 100%;
     min-height: 480px;
