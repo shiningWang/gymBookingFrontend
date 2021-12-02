@@ -11,6 +11,10 @@
 // background: linear-gradient(to right bottom, #DDC4FC, #91C5FC)
 // background: linear-gradient(to right bottom, #A36FE4, #297FD9)
 
+#root {
+    height: fit-content;
+}
+
 .homeHolder {
     width: 100vw;
     height: 100vh;
