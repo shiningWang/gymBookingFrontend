@@ -34,7 +34,6 @@ class Withdraw extends React.Component {
     }
 
     withdrawBooking() {
-        alert('haha')
         this.setState({ pageTrigger: 1 })
         Utils.cancelBooking(this.props.session._id, this.props.currentUserData._id)
             .then(res => {

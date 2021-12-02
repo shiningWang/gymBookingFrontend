@@ -36,7 +36,9 @@ class Mybookings extends React.Component {
     }
 
     clearSelectedSession() {
-        this.setState({ pageTrigger: 1 }, this.myBookingsSessionsRequest())
+        this.setState({ pageTrigger: 1, selectedSession: null }, () => {
+            this.myBookingsSessionsRequest()
+        })
     }
 
     async myBookingsSessionsRequest() {
@@ -71,12 +73,14 @@ class Mybookings extends React.Component {
 
     render() {
         if (this.state.pageTrigger === 1) {
+            console.log(this.state.pageTrigger)
             return (
                 <div className="pageLoadingScreenHolder">
                         <div className="pageLoading"><img src={loadingImg} /></div>
                 </div>
             )
         } else if (this.state.pageTrigger === 2) {
+            console.log(this.state.pageTrigger)
             return (
                 <React.Fragment>
                     <div className="myBookingsScreenHolder">
