@@ -85,10 +85,12 @@ class Createsession extends React.Component {
     async handleCreateSubmit(event) {
         event.preventDefault();
 
-        let startTimePending = new Date(this.state.dateYear, this.state.dateMonth-1, this.state.dateDay,
+        this.setState({ pageTrigger: 3 })
+
+        let startTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
             this.state.startHour, this.state.startMinute, 0);
 
-        let endTimePending = new Date(this.state.dateYear, this.state.dateMonth-1, this.state.dateDay,
+        let endTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
             this.state.endHour, this.state.endMinute, 0);
         // get formdata ready date etc
 
@@ -106,7 +108,7 @@ class Createsession extends React.Component {
         if (!deleteResponse.error) {
             console.log(deleteResponse.message)
         } else {
-            this.setState({ pageTrigger: 4})
+            this.setState({ pageTrigger: 4 })
         }
     }
 
@@ -215,11 +217,15 @@ class Createsession extends React.Component {
                     </React.Fragment >
                 )
             } else if (this.state.pageTrigger === 3) {
-                return(
-                    <div>loading page</div>
+                return (
+                    <div className="viewSessionHolder">
+                        <div className="viewSessionBlock">
+                            <div className="bookingLoading"><img src={loadingImg} /></div>
+                        </div>
+                    </div>
                 )
             } else if (this.state.pageTrigger === 4) {
-                return(
+                return (
                     <Navigate to="/admin" />
                 )
             }
