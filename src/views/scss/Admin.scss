@@ -2,28 +2,18 @@
 
 
 .adminScreenHolder {
-    width: 100vw;
-    height: 100vh;
-    min-height: 480px;
+    width: 100%;
 
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
 
-    position: fixed;
+    position: absolute;
     z-index: -10;
 
-    overflow-y: scroll;
-
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.adminScreenHolder::-webkit-scrollbar {
-    display: none;
 }
 
 .adminHeaderHolder {
@@ -32,11 +22,17 @@
     padding-top: 1em;
     padding-bottom: 1em;
     border-radius: 0 2em 0 2em;
-    margin: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
     filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
     .adminHeaderTitle {
         font-size: x-large;
+        font-weight: 600;
+        color: #5F4591;
+
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -57,13 +53,15 @@
     .sessionDateHolder {
         width: 100%;
         margin-top: 0.5em;
-        margin-bottom: 0.5em;
+        margin-bottom: 2em;
         
         .sessionDateHeader {
             width: 80%;
             margin-left: 15%;
             margin-right: auto;
             font-size: larger;
+            font-weight: 500;
+
             margin-top: 0.5em;
             margin-bottom: 0.5em;
         }
@@ -96,6 +94,15 @@
             }
             .sessionBlockDetail {
                 width: 60%;
+                .sessionName {
+                    font-size: medium;
+                    font-weight: 700;
+                    color: #5F4591;
+                }
+                .sessionTime, .sessionPeople, .sessionRoom {
+                    font-size: medium;
+                    font-weight: 500;
+                }
             }
             .sessionMoreIcon {
                 width: 20%;
@@ -149,8 +156,6 @@
 
         .sessionDateHolder {
             width: 100%;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
 
             .sessionDateHeader {
                 width: 80%;

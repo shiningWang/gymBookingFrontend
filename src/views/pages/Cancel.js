@@ -86,6 +86,38 @@ class Cancel extends React.Component {
                     </div>
                 </div>
             )
+        } else if (this.state.pageTrigger === 3) {
+            return (
+                <div className="viewSessionHolder">
+                    <div className="viewSessionBlock">
+                        <div className="sessionBookingSuccess">
+                            <div className="bookingSuccessIcon"><img src={confirmedImg} /></div>
+                            <div className="bookingSuccessTitle">Cancelling Success!</div>
+                        </div>
+
+                        <div className="viewSessionButtons">
+                            <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            )
+        } else if (this.state.pageTrigger === 4) {
+            return (
+                <div className="viewSessionHolder">
+                    <div className="viewSessionBlock">
+                        <div className="sessionBookingFail">
+                            <div className="bookingFailIcon"><img src={bookingFailImg} /></div>
+                            <div className="bookingFailTitle">Cancel Fail</div>
+                        </div>
+                        <div className="bookingFailMessage">{this.state.failedCancelling.message}</div>
+
+                        <div className="viewSessionButtons">
+                            <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )
         }
     }
 }

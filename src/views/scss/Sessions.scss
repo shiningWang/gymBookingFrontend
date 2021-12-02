@@ -7,10 +7,11 @@
 
 .sessionsScreenHolder {
     width: 100%;
+    min-height: 100%;
 
     display: flex;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
 
@@ -27,22 +28,29 @@
     padding-top: 1em;
     padding-bottom: 1em;
     border-radius: 0 2em 0 2em;
-    margin: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
     filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
     .headerGoBackButton {
-        font-size: large;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
         margin-top: 0.5em;
+        .backButton {
+            font-size: large;
+            color: black;
+        }
     }
     .sessionsHeaderTitle {
         font-size: x-large;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 0.5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
     };
 }
 
@@ -78,7 +86,9 @@
         position: relative;
         z-index: 85;
         .sessionInfoHeader {
-            font-size: larger;
+            font-size: medium;
+            font-weight: 700;
+            color: #5F4591;
             margin-bottom: 0.5em;
         }
         .sessionInfoIntro {
@@ -114,7 +124,7 @@
     }
     .sessionsHeaderHolder {
         width: 100%;
-        min-width: 100%;
+        min-width: 320px;
         padding-top: 1em;
         padding-bottom: 1em;
         border-radius: 0 0 0 2em;
@@ -133,7 +143,7 @@
     }
     .sessionTypeHolder {
         width: 100%;
-        min-width: 100%;
+        min-width: 320px;
         padding-top: 4em;
         margin-top: -2em;
         padding-bottom: 1em;

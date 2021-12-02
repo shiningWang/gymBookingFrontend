@@ -69,56 +69,63 @@ class Yoga extends React.Component {
     }
 
     render() {
-        if (this.state.yogaSessionData === null || this.state.yogaSessionIndex === null) {
+        if (this.props.currentUserData === null) {
+            console.log("no user data")
             return (
-                <div className="pageLoadingScreenHolder">
-                        <div className="pageLoading"><img src={loadingImg} /></div>
-                </div>
+                <Navigate to="/account" />
             )
         } else {
-            return (
-                <React.Fragment>
-                    <div className="yogaScreenHolder">
-                        <div className="yogaHeaderHolder">
-                            <Link style={{ textDecoration: "none" }} to="/sessions"><div className="headerGoBackButton">← Back</div></Link>
-                            <div className="yogaHeaderTitle">Yoga Sessions</div>
-                        </div>
-                        <div className="yogaImgIntroHolder">
-                            <div className="yogaImgHolder"><img src={yogaCharImg} /></div>
-                            <div className="yogaIntro">Burn Fat Yoga</div>
-                            <div className="yogaSessionsQuan">4 Available Sessions</div>
-                        </div>
-                        <div className="allYogaSessions">
-                            {
-                                this.state.yogaSessionIndex.map((index) => (
-                                    <div className="sessionDateHolder" key={index}>
-                                        <div className="sessionDateHeader">{Utils.sessionTime(this.state.yogaSessionData[index][0].startTime)}</div>
-                                        {
-                                            this.state.yogaSessionData[index].map((session) => (
-                                                <div className="sessionBlock" key={session._id}>
-                                                    {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
-                                                    {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
-                                                    {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
-                                                    <div className="sessionBlockDetail">
-                                                        {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
-                                                        {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
-                                                        {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
-                                                        <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
-                                                        <div>Room: {session.roomNumber}</div>
-                                                    </div>
-                                                    <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
-                        <Menu currentUserData={this.props.currentUserData} />
+            if (this.state.yogaSessionData === null || this.state.yogaSessionIndex === null) {
+                return (
+                    <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
                     </div>
-                </React.Fragment>
-            )
+                )
+            } else {
+                return (
+                    <React.Fragment>
+                        <div className="yogaScreenHolder">
+                            <div className="yogaHeaderHolder">
+                                <Link style={{ textDecoration: "none" }} to="/sessions"><div className="headerGoBackButton">Back</div></Link>
+                                <div className="yogaHeaderTitle">Yoga Sessions</div>
+                            </div>
+                            <div className="yogaImgIntroHolder">
+                                <div className="yogaImgHolder"><img src={yogaCharImg} /></div>
+                                <div className="yogaIntro">Burn Fat Yoga</div>
+                                <div className="yogaSessionsQuan">4 Available Sessions</div>
+                            </div>
+                            <div className="allYogaSessions">
+                                {
+                                    this.state.yogaSessionIndex.map((index) => (
+                                        <div className="sessionDateHolder" key={index}>
+                                            <div className="sessionDateHeader">{Utils.sessionTime(this.state.yogaSessionData[index][0].startTime)}</div>
+                                            {
+                                                this.state.yogaSessionData[index].map((session) => (
+                                                    <div className="sessionBlock" key={session._id}>
+                                                        {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
+                                                        {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
+                                                        {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
+                                                        <div className="sessionBlockDetail">
+                                                            {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
+                                                            {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
+                                                            {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
+                                                            <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
+                                                            <div>Room: {session.roomNumber}</div>
+                                                        </div>
+                                                        <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                            <Menu currentUserData={this.props.currentUserData} />
+                        </div>
+                    </React.Fragment>
+                )
+            }
         }
     }
 }

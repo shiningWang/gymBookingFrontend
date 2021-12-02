@@ -13,7 +13,8 @@
 
 .homeHolder {
     width: 100%;
-
+    min-width: 100%;
+    
     display: flex;
     justify-content: center;
     align-content: center;
@@ -28,22 +29,27 @@
 }
 
 .greetingHolder {
-    width: 35%;
-    min-width: 315px;
+    width: 40%;
+    min-width: 435px;
     padding-top: 1em;
     padding-bottom: 1em;
     border-radius: 0 2em 0 2em;
-    margin: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
     filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
     .greetingTitle {
         font-size: x-large;
+        font-weight: 500;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
     };
     .greetingUserName {
-        font-size: larger;
+        font-size:xx-large;
+        font-weight: 300;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -51,8 +57,8 @@
 }
 
 .exerciseHistory {
-    width: 35%;
-    min-width: 315px;
+    width: 40%;
+    min-width: 435px;
     padding-top: 2em;
     padding-bottom: 2em;
     border-radius: 0 2em 0 2em;
@@ -91,8 +97,8 @@
 }
 
 .upcomingClass {
-    width: 35%;
-    min-width: 315px;
+    width: 40%;
+    min-width: 435px;
     padding-top: 2em;
     padding-bottom: 2em;
     border-radius: 0 2em 0 2em;
@@ -155,6 +161,11 @@
         }
         .sessionBlockDetail {
             width: 60%;
+            .sessionName {
+                font-size: medium;
+                font-weight: 700;
+                color: #5F4591;
+            }
         }
         .sessionMoreIcon {
             width: 20%;
@@ -201,6 +212,7 @@
     
     .greetingHolder {
         width: 100%;
+        min-width: 320px;
         padding-top: 1em;
         padding-bottom: 1em;
         border-radius: 0 0 0 2em;
@@ -219,6 +231,7 @@
     }
     .exerciseHistory {
         width: 100%;
+        min-width: 320px;
         padding-top: 4em;
         margin-top: -3em;
         padding-bottom: 1em;
@@ -244,6 +257,7 @@
     }
     .upcomingClass {
         width: 100%;
+        min-width: 320px;
         padding-top: 4em;
         margin-top: -2em;
         padding-bottom: 1em;

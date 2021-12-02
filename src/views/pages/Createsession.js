@@ -168,10 +168,8 @@ class Createsession extends React.Component {
                                     </div>
                                 </form>
                             </div>
-
+                            <Menu currentUserData={this.props.currentUserData} />
                         </div>
-
-                        <Menu currentUserData={this.props.currentUserData} />
                     </React.Fragment >
                 )
             } else if (this.state.pageTrigger === 2) {
@@ -181,7 +179,6 @@ class Createsession extends React.Component {
 
                             <div className="createSessionHeaderHolder">
                                 <div className="createSessionHeaderTitle">Create New Session</div>
-                                {this.state.currentType === "" && <div className="sessionName" >Pick Session Type</div>}
                             </div>
 
                             <div className="createSessionTypeHolder">
@@ -220,10 +217,8 @@ class Createsession extends React.Component {
                                     </div>
                                 </form>
                             </div>
-
+                            <Menu currentUserData={this.props.currentUserData} />
                         </div>
-
-                        <Menu currentUserData={this.props.currentUserData} />
                     </React.Fragment >
                 )
             } else if (this.state.pageTrigger === 3) {

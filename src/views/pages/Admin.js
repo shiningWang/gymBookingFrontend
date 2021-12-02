@@ -12,6 +12,8 @@ import yogaImg from '../../images/yoga.svg';
 import personalImg from '../../images/personal.svg';
 import more from '../../images/more.svg';
 
+import loadingImg from '../../images/loading.svg';
+
 class Admin extends React.Component {
 
     constructor(props) {
@@ -21,13 +23,20 @@ class Admin extends React.Component {
             adminSessionIndex: null,
 
             selectedSession: null,
+
+            // page trigger index
+            // 1 is loading page
+            // 2 is showing page
+            pageTrigger: 1,
         };
         this.homeSessionsRequest = this.homeSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
     }
 
     clearSelectedSession() {
-        this.setState({ selectedSession: null })
+        this.setState({ selectedSession: null, pageTrigger: 1 }, () => {
+            this.homeSessionsRequest();
+        })
     }
 
     componentDidMount() {
@@ -44,7 +53,7 @@ class Admin extends React.Component {
 
         if (allSessions.error) {
             console.log(allSessions.message)
-            this.setState({ adminSessionsData: 0, adminSessionIndex: 0 })
+            this.setState({ adminSessionsData: 0, adminSessionIndex: 0, pageTrigger: 2 })
         } else {
             let pendingSortDate = {};
             allSessions.forEach(session => {
@@ -63,7 +72,7 @@ class Admin extends React.Component {
                 }
             });
             let pSDT = Object.keys(pendingSortDate);
-            this.setState({ adminSessionsData: pendingSortDate, adminSessionIndex: pSDT })
+            this.setState({ adminSessionsData: pendingSortDate, adminSessionIndex: pSDT, pageTrigger: 2 })
         }
     }
 
@@ -73,57 +82,61 @@ class Admin extends React.Component {
             return (
                 <Navigate to="/account" />
             )
-        } else if (this.state.adminSessionsData === null) {
-            return (
-                <div>loading</div>
-            )
         } else {
-            return (
-                <React.Fragment>
-                    <div className="adminScreenHolder">
-
-                        <div className="adminHeaderHolder">
-                            <div className="adminHeaderTitle">All Future Sessions</div>
-                        </div>
-
-                        <div className="adminAllSessions">
-                            {this.state.adminSessionsData != 0 &&
-                                this.state.adminSessionIndex.map((index) => (
-                                    <div className="sessionDateHolder" key={index}>
-                                        <div className="sessionDateHeader">{Utils.sessionTime(this.state.adminSessionsData[index][0].startTime)}</div>
-                                        {
-                                            this.state.adminSessionsData[index].map((session) => (
-                                                <div className="sessionBlock" key={session._id}>
-                                                    {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
-                                                    {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
-                                                    {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
-                                                    <div className="sessionBlockDetail">
-                                                        {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
-                                                        {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
-                                                        {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
-                                                        <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
-                                                        <div>{session.attendees.length === 0 && "No one registered yet"}{session.attendees.length === 1 && "1 person registered"}{session.attendees.length > 1 && session.attendees.length + " person registered"}</div>
-                                                        <div>Room {session.roomNumber}</div>
-                                                    </div>
-                                                    <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                ))
-                            }
-                            {this.state.adminSessionsData === 0 &&
-                                <div>
-                                    <div>No Booking Has Been Made</div>
-                                    <div>Booking Now</div>
-                                </div>
-                            }
-                        </div>
+            if (this.state.pageTrigger === 1) {
+                return (
+                    <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
                     </div>
-                    {this.state.selectedSession != null && <Cancel session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
-                    <Menu currentUserData={this.props.currentUserData} />
-                </React.Fragment>
-            )
+                )
+            } else if (this.state.pageTrigger === 2) {
+                return (
+                    <React.Fragment>
+                        <div className="adminScreenHolder">
+
+                            <div className="adminHeaderHolder">
+                                <div className="adminHeaderTitle">All Future Sessions</div>
+                            </div>
+
+                            <div className="adminAllSessions">
+                                {this.state.adminSessionsData != 0 &&
+                                    this.state.adminSessionIndex.map((index) => (
+                                        <div className="sessionDateHolder" key={index}>
+                                            <div className="sessionDateHeader">{Utils.sessionTime(this.state.adminSessionsData[index][0].startTime)}</div>
+                                            {
+                                                this.state.adminSessionsData[index].map((session) => (
+                                                    <div className="sessionBlock" key={session._id}>
+                                                        {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
+                                                        {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
+                                                        {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
+                                                        <div className="sessionBlockDetail">
+                                                            {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
+                                                            {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
+                                                            {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
+                                                            <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
+                                                            <div className="sessionPeople">{session.attendees.length === 0 && "No one registered yet"}{session.attendees.length === 1 && "1 person registered"}{session.attendees.length > 1 && session.attendees.length + " person registered"}</div>
+                                                            <div className="sessionRoom">Room {session.roomNumber}</div>
+                                                        </div>
+                                                        <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    ))
+                                }
+                                {this.state.adminSessionsData === 0 &&
+                                    <div>
+                                        <div>No Booking Has Been Made</div>
+                                        <div>Booking Now</div>
+                                    </div>
+                                }
+                            </div>
+                            {this.state.selectedSession != null && <Cancel session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                            <Menu currentUserData={this.props.currentUserData} />
+                        </div>
+                    </React.Fragment>
+                )
+            }
         }
     }
 }

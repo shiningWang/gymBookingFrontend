@@ -23,7 +23,7 @@ class Sessions extends React.Component {
                 <div className="sessionsScreenHolder">
 
                     <div className="sessionsHeaderHolder">
-                        <Link style={{ textDecoration: "none" }} to="/"><div className="headerGoBackButton">← Go Home</div></Link>
+                        <div className="headerGoBackButton"><Link className="backButton" style={{ textDecoration: "none" }} to="/">Back</Link></div>
                         <div className="sessionsHeaderTitle">All Future Sessions</div>
                     </div>
 
@@ -43,7 +43,7 @@ class Sessions extends React.Component {
                             <img className="sessionImg" src={groupCharImg} />
                         </div>
                         <div className="sessionInfoHolder">
-                            <div className="sessionInfoHeader">Group Fitness Session</div>
+                            <div className="sessionInfoHeader">Group Fitness</div>
                             <div className="sessionInfoIntro">Ideal For Complete Body Workout</div>
                             <Link style={{ textDecoration: "none" }} to="/group"><div className="sessionInfoButton">View Sessions</div></Link>
                         </div>
@@ -54,7 +54,7 @@ class Sessions extends React.Component {
                             <img className="sessionImg" src={personalCharImg} />
                         </div>
                         <div className="sessionInfoHolder">
-                            <div className="sessionInfoHeader">Personal Training Session</div>
+                            <div className="sessionInfoHeader">Personal Training</div>
                             <div className="sessionInfoIntro">Muscular Imbalances, Proper Form, And Good Posture</div>
                             <Link style={{ textDecoration: "none" }} to="/personal"><div className="sessionInfoButton">View Sessions</div></Link>
                         </div>

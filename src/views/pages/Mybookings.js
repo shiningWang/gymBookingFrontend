@@ -81,65 +81,73 @@ class Mybookings extends React.Component {
     }
 
     render() {
-        if (this.state.pageTrigger === 1) {
-            console.log(this.state.pageTrigger)
+        if (this.props.currentUserData === null) {
+            console.log("no user data")
             return (
-                <div className="pageLoadingScreenHolder">
-                    <div className="pageLoading"><img src={loadingImg} /></div>
-                </div>
+                <Navigate to="/account" />
             )
-        } else if (this.state.pageTrigger === 2) {
-            console.log(this.state.pageTrigger)
-            return (
-                <React.Fragment>
-                    <div className="myBookingsScreenHolder">
-
-                        <div className="myBookingsHeaderHolder">
-                            <div className="myBookingsHeaderTitle">My Future Bookings</div>
-                        </div>
-
-                        <div className="allBookedSessions">
-                            {this.state.bookedSessionData != 0 &&
-                                this.state.bookedSessionIndex.map((index) => (
-                                    <div className="sessionDateHolder" key={index}>
-                                        <div className="sessionDateHeader">{Utils.sessionTime(this.state.bookedSessionData[index][0].startTime)}</div>
-                                        {
-                                            this.state.bookedSessionData[index].map((session) => (
-                                                <div className="sessionBlock" key={session._id}>
-                                                    {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
-                                                    {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
-                                                    {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
-                                                    <div className="sessionBlockDetail">
-                                                        {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
-                                                        {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
-                                                        {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
-                                                        <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
-                                                        <div>Room: {session.roomNumber}</div>
-                                                    </div>
-                                                    <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                ))
-                            }
-
-                            {this.state.bookedSessionData === 0 &&
-                                <div className="myBookingsNullHolder">
-                                    <div className="myBookingsNullTitle">No Booking Has Been Made</div>
-                                    <div className="myBookingsNullButton" onClick={this.goToBookSessionsPage}>Book Now</div>
-                                </div>
-                            }
-                        </div>
-                        {this.state.selectedSession != null && <Withdraw session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
-                        <Menu currentUserData={this.props.currentUserData} />
+        } else {
+            if (this.state.pageTrigger === 1) {
+                console.log(this.state.pageTrigger)
+                return (
+                    <div className="pageLoadingScreenHolder">
+                        <div className="pageLoading"><img src={loadingImg} /></div>
                     </div>
-                </React.Fragment>
-            )
-        } else if (this.state.pageTrigger === 3) {
-            return (
-                <Navigate to="/sessions" />
-            )
+                )
+            } else if (this.state.pageTrigger === 2) {
+                console.log(this.state.pageTrigger)
+                return (
+                    <React.Fragment>
+                        <div className="myBookingsScreenHolder">
+
+                            <div className="myBookingsHeaderHolder">
+                                <div className="headerGoBackButton"><Link className="backButton" style={{ textDecoration: "none" }} to="/">Back</Link></div>
+                                <div className="myBookingsHeaderTitle">My Future Bookings</div>
+                            </div>
+
+                            <div className="allBookedSessions">
+                                {this.state.bookedSessionData != 0 &&
+                                    this.state.bookedSessionIndex.map((index) => (
+                                        <div className="sessionDateHolder" key={index}>
+                                            <div className="sessionDateHeader">{Utils.sessionTime(this.state.bookedSessionData[index][0].startTime)}</div>
+                                            {
+                                                this.state.bookedSessionData[index].map((session) => (
+                                                    <div className="sessionBlock" key={session._id}>
+                                                        {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
+                                                        {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
+                                                        {session.sessionType === 'personal' && <div className="sessionIcon"><img src={personalImg} /> </div>}
+                                                        <div className="sessionBlockDetail">
+                                                            {session.sessionType === 'yoga' && <div className="sessionName">Yoga Session</div>}
+                                                            {session.sessionType === 'group' && <div className="sessionName">Group Fitness Session</div>}
+                                                            {session.sessionType === 'personal' && <div className="sessionName">Personal Training Session</div>}
+                                                            <div className="sessionTime">{Utils.sessionTime(session.startTime)}</div>
+                                                            <div>Room: {session.roomNumber}</div>
+                                                        </div>
+                                                        <div className="sessionMoreIcon"><img src={more} onClick={() => { this.setState({ selectedSession: session }) }} /></div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    ))
+                                }
+
+                                {this.state.bookedSessionData === 0 &&
+                                    <div className="myBookingsNullHolder">
+                                        <div className="myBookingsNullTitle">No Booking Has Been Made</div>
+                                        <div className="myBookingsNullButton" onClick={this.goToBookSessionsPage}>Book Now</div>
+                                    </div>
+                                }
+                            </div>
+                            {this.state.selectedSession != null && <Withdraw session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                            <Menu currentUserData={this.props.currentUserData} />
+                        </div>
+                    </React.Fragment>
+                )
+            } else if (this.state.pageTrigger === 3) {
+                return (
+                    <Navigate to="/sessions" />
+                )
+            }
         }
     }
 }

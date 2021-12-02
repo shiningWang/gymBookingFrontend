@@ -8,9 +8,8 @@
 
 
 .screenHolder {
-    width: 100vw;
-    height: 100vh;
-    min-height: 480px;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -18,7 +17,6 @@
 
     position: fixed;
     z-index: -10;
-    transition: all .3s;
 }
 
 .accountBoardDash {
@@ -127,7 +125,6 @@
 @media screen and (max-width: 768px) {
     .screenHolder {
         background-color: rgba(219, 216, 202, 0.3);
-        transition: all .1s;
     }
     .accountBoardDash {
         height: 50%;

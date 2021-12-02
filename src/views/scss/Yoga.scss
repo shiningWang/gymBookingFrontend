@@ -6,10 +6,11 @@
 
 .yogaScreenHolder {
     width: 100%;
+    min-height: 100%;
 
     display: flex;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
 
@@ -38,6 +39,8 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        color: black;
     }
     .yogaHeaderTitle {
         font-size: x-large;
@@ -52,7 +55,7 @@
     width: 35%;
     min-width: 435px;
     padding-top: 1em;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
     border-radius: 0 2em 0 2em;
     margin: 0.5em;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
@@ -78,6 +81,7 @@
         margin-right: auto;
         margin-top: 0.2em;
         text-align: center;
+        color: #5F4591;
     }
     .yogaSessionsQuan {
         font-size: large;
@@ -101,7 +105,7 @@
     .sessionDateHolder {
         width: 100%;
         margin-top: 0.5em;
-        margin-bottom: 0.5em;
+        margin-bottom: 2em;
         
         .sessionDateHeader {
             width: 80%;
@@ -140,6 +144,11 @@
             }
             .sessionBlockDetail {
                 width: 60%;
+                .sessionName {
+                    font-size: medium;
+                    font-weight: 700;
+                    color: #5F4591;
+                }
             }
             .sessionMoreIcon {
                 width: 20%;
@@ -201,14 +210,6 @@
                 max-width: 305px;
             }
         }
-        .yogaIntro {
-            font-size: x-large;
-            width: 70%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0.2em;
-            text-align: center;
-        }
         .yogaSessionsQuan {
             font-size: large;
             width: 70%;
@@ -237,8 +238,6 @@
 
         .sessionDateHolder {
             width: 100%;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
 
             .sessionDateHeader {
                 width: 80%;

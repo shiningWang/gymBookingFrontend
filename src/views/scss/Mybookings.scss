@@ -2,7 +2,7 @@
 // myBookingsScreenHolder   -10
 
 .myBookingsScreenHolder {
-    width: 100vw;
+    width: 100%;
 
     display: flex;
     justify-content: center;
@@ -13,8 +13,6 @@
     position: absolute;
     z-index: -10;
 
-    overflow-y: scroll;
-
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
 }
 
@@ -24,9 +22,22 @@
     padding-top: 1em;
     padding-bottom: 1em;
     border-radius: 0 2em 0 2em;
-    margin: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
     background-color: rgba($color: #ffffff, $alpha: 0.8);
     filter: drop-shadow(0 .5em 1em rgba(128,128,128,.3));
+    .headerGoBackButton {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0.5em;
+        .backButton {
+            font-size: large;
+            color: black;
+        }
+    }
     .myBookingsHeaderTitle {
         font-size: x-large;
         width: 80%;
@@ -49,13 +60,16 @@
     .sessionDateHolder {
         width: 100%;
         margin-top: 0.5em;
-        margin-bottom: 0.5em;
+        margin-bottom: 2em;
         
         .sessionDateHeader {
             width: 80%;
             margin-left: 15%;
             margin-right: auto;
+            
             font-size: larger;
+            font-weight: 500;
+
             margin-top: 0.5em;
             margin-bottom: 0.5em;
         }
@@ -88,6 +102,11 @@
             }
             .sessionBlockDetail {
                 width: 60%;
+                .sessionName {
+                    font-size: medium;
+                    font-weight: 700;
+                    color: #5F4591;
+                }
             }
             .sessionMoreIcon {
                 width: 20%;
@@ -140,7 +159,7 @@
 
     .myBookingsHeaderHolder {
         width: 100%;
-        min-width: 100%;
+        min-width: 320px;
         padding-top: 1em;
         padding-bottom: 1em;
         border-radius: 0 0 0 2em;
@@ -150,6 +169,9 @@
         z-index: 95;
 
         background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
+        .headerGoBackButton {
+            width: 70%;
+        }
         .myBookingsHeaderTitle {
             width: 70%;
         };
@@ -157,7 +179,7 @@
 
     .allBookedSessions {
         width: 100%;
-        min-width: 100%;
+        min-width: 320px;
         padding-top: 4em;
         margin-top: -2em;
         padding-bottom: 1em;
@@ -174,17 +196,6 @@
 
         .sessionDateHolder {
             width: 100%;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-
-            .sessionDateHeader {
-                width: 80%;
-                margin-left: 15%;
-                margin-right: auto;
-                font-size: larger;
-                margin-top: 0.5em;
-                margin-bottom: 0.5em;
-            }
 
             .sessionBlock {
                 display: flex;
