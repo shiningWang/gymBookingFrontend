@@ -157,8 +157,8 @@ class Home extends React.Component {
                                 }
                             </div>
                         </div>
-                        {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     </div>
+                    {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                     <Menu currentUserData={this.props.currentUserData} />
                 </React.Fragment>
             )
