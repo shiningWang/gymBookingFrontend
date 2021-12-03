@@ -103,7 +103,6 @@ class Booking extends React.Component {
                 </div>
             )
         } else if (this.state.pageTrigger === 4) {
-            console.log(this.state.failedBooking)
             return (
                 <div className="viewSessionHolder">
                     <div className="viewSessionBlock">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Navigate, useLocation } from "react-router-dom";
 import Utils from '../../Utils';
+import Popup from './Popup';
 
 import '../scss/Account.scss'
 
@@ -28,6 +29,8 @@ class Account extends React.Component {
             clientEmail: "",
             clientPassword: "",
             clientConfirmPassword: "",
+
+            showMessage: null,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSignInSubmit = this.handleSignInSubmit.bind(this);
@@ -54,7 +57,13 @@ class Account extends React.Component {
             this.setState({pageTrigger: 1});
             this.props.updateCurrentUserData(currentUserData.userCredit);
         } else {
-            console.log(currentUserData.error.message)
+            this.setState({ pageTrigger: 1}, ()=>{
+                this.setState({ showMessage: currentUserData.error.message },()=>{
+                    setTimeout(() => {
+                        this.setState({ showMessage: null })
+                    }, 3000);
+                })
+            })
         }
     }
 
@@ -78,8 +87,13 @@ class Account extends React.Component {
                     pageTrigger: 1,
                 })
             } else {
-                this.setState({ pageTrigger: 2});
-                console.log(signUpData.error.message);
+                this.setState({ pageTrigger: 2}, ()=> {
+                    this.setState({ showMessage: signUpData.error.message }, ()=>{
+                        setTimeout(() => {
+                            this.setState({ showMessage: null })
+                        }, 3000);
+                    })
+                });
             }
         }
     }
@@ -117,6 +131,7 @@ class Account extends React.Component {
                                 </div>
                             </form>
                         </div>
+                        < Popup popupMessage={this.state.showMessage} />
                     </div>
                 </React.Fragment>
             )
@@ -153,6 +168,7 @@ class Account extends React.Component {
                                 </div>
                             </form>
                         </div>
+                        < Popup popupMessage={this.state.showMessage} />
                     </div>
                 </React.Fragment>
             )

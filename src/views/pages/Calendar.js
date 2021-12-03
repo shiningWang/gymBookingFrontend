@@ -51,8 +51,6 @@ class Calendar extends React.Component {
             let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
             let initWeekDay = getWeekDayPending.getDay() - 1;
 
-            console.log(initWeekDay)
-
             let spaceInitMonth = [];
             if (initWeekDay === 0) {
                 //pass
@@ -82,8 +80,6 @@ class Calendar extends React.Component {
 
             let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
             let initWeekDay = getWeekDayPending.getDay() - 1;
-
-            console.log(initWeekDay)
 
             let spaceInitMonth = [];
             if (initWeekDay === 0) {
@@ -126,8 +122,6 @@ class Calendar extends React.Component {
             let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
             let initWeekDay = getWeekDayPending.getDay() - 1;
 
-            console.log(initWeekDay)
-
             let spaceInitMonth = [];
             if (initWeekDay === 0) {
                 //pass
@@ -157,8 +151,6 @@ class Calendar extends React.Component {
 
             let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
             let initWeekDay = getWeekDayPending.getDay() - 1;
-
-            console.log(initWeekDay)
 
             let spaceInitMonth = [];
             if (initWeekDay === 0) {
@@ -198,9 +190,7 @@ class Calendar extends React.Component {
         if (this.state.currentSelectedId === null) {
             this.setState({ currentSelectedId: ("ele" + itr), currentSelectedDate: itr }, () => {
                 let dayDiv = document.getElementById("ele" + itr);
-                console.log(dayDiv.className)
                 dayDiv.className = "weekSpaceActive";
-                console.log(dayDiv.className)
                 this.props.getDateFromCalendar(this.state.currentSelectedDate, this.state.nowMonth + 1, this.state.nowYear)
             })
         } else {
