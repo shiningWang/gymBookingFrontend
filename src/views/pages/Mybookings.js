@@ -53,7 +53,6 @@ class Mybookings extends React.Component {
                 this.setState({ pageTrigger: 2 })
             })
         } else {
-            console.log(sessionResult)
             let pendingSortDate = {};
             let sortedSessionResult = sessionResult.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
             sortedSessionResult.map(session => {
@@ -91,20 +90,17 @@ class Mybookings extends React.Component {
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )
         } else {
             if (this.state.pageTrigger === 1) {
-                console.log(this.state.pageTrigger)
                 return (
                     <div className="pageLoadingScreenHolder">
                         <div className="pageLoading"><img src={loadingImg} /></div>
                     </div>
                 )
             } else if (this.state.pageTrigger === 2) {
-                console.log(this.state.pageTrigger)
                 return (
                     <React.Fragment>
                         <div className="myBookingsScreenHolder">

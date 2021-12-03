@@ -19,7 +19,6 @@ class Sessions extends React.Component {
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )

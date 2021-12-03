@@ -6,6 +6,7 @@ import '../scss/Yoga.scss';
 
 import Menu from './Menu';
 import Booking from './Booking';
+import Popup from './Popup';
 
 import groupCharImg from '../../images/groupChar.svg';
 import yogaCharImg from '../../images/yogaChar.svg';
@@ -25,6 +26,8 @@ class Yoga extends React.Component {
             yogaSessionData: null,
             yogaSessionIndex: null,
             selectedSession: null,
+
+            showMessage: null,
         };
         this.yogaSessionsRequest = this.yogaSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
@@ -45,7 +48,11 @@ class Yoga extends React.Component {
     async yogaSessionsRequest() {
         let sessionResult = await Utils.fetchData("yoga");
         if (sessionResult.error) {
-            console.log(sessionResult.message)
+            this.setState({ showMessage: sessionResult.message }, ()=>{
+                setTimeout(() => {
+                    this.setState({ showMessage: null })
+                }, 3000);
+            })
         } else {
             let pendingSortDate = {};
             let sortedSessionResult = sessionResult.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
@@ -78,7 +85,6 @@ class Yoga extends React.Component {
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )
@@ -130,6 +136,7 @@ class Yoga extends React.Component {
                             </div>
                             {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                             <Menu currentUserData={this.props.currentUserData} />
+                            < Popup popupMessage={this.state.showMessage} />
                         </div>
                     </React.Fragment>
                 )

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Navigate, useLocation } from "react-router-dom";
 import Utils from '../../Utils';
 import Menu from './Menu';
+import Popup from './Popup';
 
 import '../scss/Createsession.scss';
 
@@ -47,6 +48,7 @@ class Createsession extends React.Component {
             pageTrigger: 1,
 
             currentType: "",
+            showMessage: null,
         };
         this.getDateFromCalendar = this.getDateFromCalendar.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -74,13 +76,24 @@ class Createsession extends React.Component {
             this.state.dateMonth < 0 ||
             this.state.dateYear < 0
         ) {
-            console.log("Please Select Date");
-            this.setState({ pageTrigger: 2 });
+            this.setState({ pageTrigger: 1 },()=>{
+                this.setState({ showMessage: "Please Select Date"}, ()=>{
+                    setTimeout(() => {
+                        this.setState({ showMessage: null })
+                    }, 3000);
+                })
+            });
         } else if (
             parseInt(this.state.endHour, 10) === parseInt(this.state.startHour, 10) && parseInt(this.state.endMinute, 10) <= parseInt(this.state.startMinute, 10) ||
             parseInt(this.state.endHour, 10) < parseInt(this.state.startHour, 10)
         ) {
-            console.log("please enter correct time")
+            this.setState({ pageTrigger: 1 },()=>{
+                this.setState({ showMessage: "Please Enter Valid Time"}, ()=>{
+                    setTimeout(() => {
+                        this.setState({ showMessage: null })
+                    }, 3000);
+                })
+            });
         } else {
             this.setState({ pageTrigger: 2 })
         }
@@ -97,9 +110,13 @@ class Createsession extends React.Component {
             this.state.dateYear < 0 ||
             this.state.currentType === ""
         ) {
-            this.setState({ pageTrigger: 2 }, ()=> {
-                console.log("Data Not Enough")
-            })
+            this.setState({ pageTrigger: 2 },()=>{
+                this.setState({ showMessage: "Please Complete All Options"}, ()=>{
+                    setTimeout(() => {
+                        this.setState({ showMessage: null })
+                    }, 3000);
+                })
+            });
         } else {
             let startTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
                 this.state.startHour, this.state.startMinute, 0);
@@ -120,9 +137,13 @@ class Createsession extends React.Component {
 
             let createResponse = await Utils.createNewSession(formData);
             if (createResponse.error) {
-                this.setState({ pageTrigger: 2 }, () => {
-                    console.log(createResponse.message)
-                })
+                this.setState({ pageTrigger: 2 },()=>{
+                    this.setState({ showMessage: createResponse.message}, ()=>{
+                        setTimeout(() => {
+                            this.setState({ showMessage: null })
+                        }, 3000);
+                    })
+                });
             } else {
                 this.setState({ pageTrigger: 5 })
             }
@@ -139,7 +160,6 @@ class Createsession extends React.Component {
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )
@@ -176,6 +196,7 @@ class Createsession extends React.Component {
                                 </form>
                             </div>
                             <Menu currentUserData={this.props.currentUserData} />
+                            < Popup popupMessage={this.state.showMessage} />
                         </div>
                     </React.Fragment >
                 )
@@ -225,6 +246,7 @@ class Createsession extends React.Component {
                                 </form>
                             </div>
                             <Menu currentUserData={this.props.currentUserData} />
+                            < Popup popupMessage={this.state.showMessage} />
                         </div>
                     </React.Fragment >
                 )

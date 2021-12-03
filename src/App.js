@@ -43,7 +43,7 @@ class App extends React.Component {
         <BrowserRouter>
             <Routes>
 
-              <Route path="/" element={ <Home ref={this.refreshReady} updateCurrentUserData={this.updateCurrentUserData} currentUserData={this.state.currentUserData}/> } />
+              <Route path="/" element={ <Home ref={this.refreshReady} updateCurrentUserData={this.updateCurrentUserData} currentUserData={this.state.currentUserData} /> } />
 
               <Route path="/account" element={ <Account ref={this.loginReady} updateCurrentUserData={this.updateCurrentUserData}/> } />
 

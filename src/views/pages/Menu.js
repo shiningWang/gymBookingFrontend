@@ -10,6 +10,8 @@ import homeImg from '../../images/home.svg';
 import sessionImg from '../../images/session.svg';
 import newbookingImg from '../../images/newbooking.svg';
 
+import logoutImg from '../../images/logout.svg';
+
 class Menu extends React.Component {
     constructor(props) {
         super(props);
@@ -38,8 +40,10 @@ class Menu extends React.Component {
                             </div>
                             <div className="menuButtonsHolder">
                                 <nav>
-                                <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/admin"><div className={window.location.pathname === '/admin' ? ("navButtonActive") : ("navButton")}><img src={sessionImg} /><div className="menuTitle">All Sessions</div></div></Link>
-                                <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/createsession"><div className={window.location.pathname === '/createsession' ? ("navButtonActive") : ("navButton")}><img src={sessionImg} /><div className="menuTitle">Create Session</div></div></Link>
+                                    <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/admin"><div className={window.location.pathname === '/admin' ? ("navButtonActive") : ("navButton")}><img src={sessionImg} /><div className="menuTitle">All Sessions</div></div></Link>
+                                    <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/createsession"><div className={window.location.pathname === '/createsession' ? ("navButtonActive") : ("navButton")}><img src={sessionImg} /><div className="menuTitle">Create Session</div></div></Link>
+
+                                    <Link style={{ textDecoration: "none", color: "#ffffff", marginTop: "2em" }} to="/account" onClick={() => { localStorage.removeItem('accessToken') }}><div className={window.location.pathname === '/account' ? ("navButtonActive") : ("navButton")}><img src={logoutImg} /><div className="menuTitle">Sign Out</div></div></Link>
                                 </nav>
                             </div>
                         </div>
@@ -64,6 +68,8 @@ class Menu extends React.Component {
                                     <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/"><div className={window.location.pathname === '/' ? ("navButtonActive") : ("navButton")}><img src={homeImg} /><div className="menuTitle">Dashboard</div></div></Link>
                                     <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/sessions"><div className={window.location.pathname === '/sessions' ? ("navButtonActive") : ("navButton")}><img src={sessionImg} /><div className="menuTitle">All Sessions</div></div></Link>
                                     <Link style={{ textDecoration: "none", color: "#ffffff" }} to="/mybookings"><div className={window.location.pathname === '/mybookings' || window.location.pathname === '/mybookings' ? ("navButtonActive") : ("navButton")}><img src={newbookingImg} /><div className="menuTitle">My Bookings</div></div></Link>
+
+                                    <Link style={{ textDecoration: "none", color: "#ffffff", marginTop: "2em" }} to="/account" onClick={() => { localStorage.removeItem('accessToken') }}><div className={window.location.pathname === '/account' ? ("navButtonActive") : ("navButton")}><img src={logoutImg} /><div className="menuTitle">Sign Out</div></div></Link>
                                 </nav>
                             </div>
                         </div>

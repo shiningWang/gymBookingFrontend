@@ -79,7 +79,6 @@ class Home extends React.Component {
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )
@@ -158,8 +157,8 @@ class Home extends React.Component {
                                 </div>
 
                             </div>
-                            <Menu currentUserData={this.props.currentUserData} />
-                            {this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
+                            < Menu currentUserData={this.props.currentUserData} />
+                            { this.state.selectedSession != null && <Booking session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                         </div>
 
 

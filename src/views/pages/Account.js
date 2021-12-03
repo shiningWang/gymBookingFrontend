@@ -6,6 +6,7 @@ import Popup from './Popup';
 import '../scss/Account.scss'
 
 import loadingImg from '../../images/loading.svg';
+import logoImg from '../../images/logo.png';
 
 
 class Account extends React.Component {
@@ -113,6 +114,7 @@ class Account extends React.Component {
                     <div className="screenHolder">
                         <div className="accountBoardDash"></div>
                         <div className="formHolder">
+                            <div className="logoHolder"><img src={logoImg} /></div>
                             <div className="pageTriggerButtons">
                                 <div className="triggerButtonCurrent" onClick={() => this.setState({ pageTrigger: 1 })}>Log in</div>
                                 <div className="triggerButton" onClick={() => this.setState({ pageTrigger: 2 })}>Sign up</div>
@@ -141,6 +143,7 @@ class Account extends React.Component {
                     <div className="screenHolder">
                         <div className="accountBoardDash"></div>
                         <div className="formHolder">
+                            <div className="logoHolder"><img src={logoImg} /></div>
                             <div className="pageTriggerButtons">
                                 <div className="triggerButton" onClick={() => this.setState({ pageTrigger: 1 })}>Log in</div>
                                 <div className="triggerButtonCurrent" onClick={() => this.setState({ pageTrigger: 2 })}>Sign up</div>

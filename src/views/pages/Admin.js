@@ -4,6 +4,7 @@ import Utils from '../../Utils';
 import Booking from './Booking';
 import Menu from './Menu';
 import Cancel from './Cancel';
+import Popup from './Popup';
 
 import '../scss/Admin.scss';
 
@@ -28,6 +29,7 @@ class Admin extends React.Component {
             // 1 is loading page
             // 2 is showing page
             pageTrigger: 1,
+            showMessage: null,
         };
         this.homeSessionsRequest = this.homeSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
@@ -49,15 +51,16 @@ class Admin extends React.Component {
 
     async homeSessionsRequest() {
         let allSessions = await Utils.adminRequestAll();
-        console.log(allSessions)
 
         if (allSessions.error) {
-            console.log(allSessions.message)
-            this.setState({ adminSessionsData: 0, adminSessionIndex: 0, pageTrigger: 2 })
+            this.setState({ adminSessionsData: 0, adminSessionIndex: 0, pageTrigger: 2 },()=>{
+                this.setState({ showMessage: allSessions.message }, ()=>{
+                    this.setState({ showMessage: null })
+                })
+            })
         } else {
             let pendingSortDate = {};
             let sortedSessionResult = allSessions.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
-            console.log(sortedSessionResult);
             sortedSessionResult.map(session => {
                 let dateTime = new Date(session.startTime);
                 let dDate = dateTime.getUTCDate();
@@ -81,14 +84,12 @@ class Admin extends React.Component {
                 }
             });
             let pSDT = Object.keys(pendingSortDate);
-            console.log(pSDT)
             this.setState({ adminSessionsData: pendingSortDate, adminSessionIndex: pSDT, pageTrigger: 2 })
         }
     }
 
     render() {
         if (this.props.currentUserData === null) {
-            console.log("no user data")
             return (
                 <Navigate to="/account" />
             )
@@ -143,6 +144,7 @@ class Admin extends React.Component {
                             </div>
                             {this.state.selectedSession != null && <Cancel session={this.state.selectedSession} currentUserData={this.props.currentUserData} clearSelectedSession={this.clearSelectedSession} />}
                             <Menu currentUserData={this.props.currentUserData} />
+                            < Popup popupMessage={this.state.showMessage} />
                         </div>
                     </React.Fragment>
                 )
