@@ -57,6 +57,7 @@ class Admin extends React.Component {
         } else {
             let pendingSortDate = {};
             let sortedSessionResult = allSessions.sort((a,b)=> parseFloat(a.startTime) - parseFloat(b.startTime));
+            console.log(sortedSessionResult);
             sortedSessionResult.map(session => {
                 let dateTime = new Date(session.startTime);
                 let dDate = dateTime.getUTCDate();
@@ -64,7 +65,14 @@ class Admin extends React.Component {
                 if (dDate < 10) { dDateStr = "0" + dDate.toString(); } else { dDateStr = dDate.toString(); }
                 let dMonth = dateTime.getUTCMonth() + 1;
                 let dYear = dateTime.getUTCFullYear();
-                let fullDate = dYear.toString() + dMonth.toString() + dDateStr;
+
+                let fullDate = "";
+                if (dMonth<10){
+                    fullDate = dYear.toString() + "0" + dMonth.toString() + dDateStr;
+                } else {
+                    fullDate = dYear.toString() + dMonth.toString() + dDateStr;
+                }
+                
                 let numFullDate = parseInt(fullDate, 10);
                 if (pendingSortDate[numFullDate] === undefined) {
                     pendingSortDate[numFullDate] = [session];
@@ -73,6 +81,7 @@ class Admin extends React.Component {
                 }
             });
             let pSDT = Object.keys(pendingSortDate);
+            console.log(pSDT)
             this.setState({ adminSessionsData: pendingSortDate, adminSessionIndex: pSDT, pageTrigger: 2 })
         }
     }

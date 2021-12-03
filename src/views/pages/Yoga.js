@@ -56,7 +56,14 @@ class Yoga extends React.Component {
                 if (dDate < 10) { dDateStr = "0" + dDate.toString(); } else { dDateStr = dDate.toString(); }
                 let dMonth = dateTime.getUTCMonth() + 1;
                 let dYear = dateTime.getUTCFullYear();
-                let fullDate = dYear.toString() + dMonth.toString() + dDateStr;
+
+                let fullDate = "";
+                if (dMonth<10){
+                    fullDate = dYear.toString() + "0" + dMonth.toString() + dDateStr;
+                } else {
+                    fullDate = dYear.toString() + dMonth.toString() + dDateStr;
+                }
+
                 let numFullDate = parseInt(fullDate, 10);
                 if (pendingSortDate[numFullDate] === undefined) {
                     pendingSortDate[numFullDate] = [session];

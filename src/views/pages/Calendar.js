@@ -24,6 +24,7 @@ class Calendar extends React.Component {
     }
 
     goNextMonth() {
+        this.props.getDateFromCalendar(-1, -1, -1)
         if(this.state.currentSelectedId != null) {
             let removeDayDiv = document.getElementById(this.state.currentSelectedId);
             removeDayDiv.className = "weekSpace";
@@ -98,6 +99,7 @@ class Calendar extends React.Component {
     }
 
     goLastMonth() {
+        this.props.getDateFromCalendar(-1, -1, -1)
         if(this.state.currentSelectedId != null) {
             let removeDayDiv = document.getElementById(this.state.currentSelectedId);
             removeDayDiv.className = "weekSpace";

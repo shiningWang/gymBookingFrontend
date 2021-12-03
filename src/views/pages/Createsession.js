@@ -97,7 +97,9 @@ class Createsession extends React.Component {
             this.state.dateYear < 0 ||
             this.state.currentType === ""
         ) {
-            console.log("Data Not Enough")
+            this.setState({ pageTrigger: 2 }, ()=> {
+                console.log("Data Not Enough")
+            })
         } else {
             let startTimePending = new Date(this.state.dateYear, this.state.dateMonth - 1, this.state.dateDay,
                 this.state.startHour, this.state.startMinute, 0);
