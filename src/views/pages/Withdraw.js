@@ -33,6 +33,13 @@ class Withdraw extends React.Component {
         this.withdrawBooking = this.withdrawBooking.bind(this);
     }
 
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
     withdrawBooking() {
         this.setState({ pageTrigger: 1 })
         Utils.cancelBooking(this.props.session._id, this.props.currentUserData._id)

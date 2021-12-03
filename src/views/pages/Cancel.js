@@ -33,6 +33,13 @@ class Cancel extends React.Component {
         this.cancelBooking = this.cancelBooking.bind(this);
     }
 
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
     cancelBooking() {
         this.setState({ pageTrigger: 1 })
         Utils.deleteBooking(this.props.session._id)

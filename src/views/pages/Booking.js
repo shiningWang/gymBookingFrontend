@@ -33,6 +33,13 @@ class Booking extends React.Component {
         this.makeNewBooking = this.makeNewBooking.bind(this);
     }
 
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
     makeNewBooking() {
         this.setState({ pageTrigger: 1 })
         Utils.makeBooking(this.props.session._id, this.props.currentUserData._id)
@@ -48,7 +55,7 @@ class Booking extends React.Component {
     render() {
         if (this.state.pageTrigger === 1) {
             return (
-                <div className="viewSessionHolder">
+                <div className="viewSessionHolder" >
                     <div className="viewSessionBlock">
                         <div className="bookingLoading"><img src={loadingImg} /></div>
                     </div>
@@ -57,7 +64,7 @@ class Booking extends React.Component {
         } else if (this.state.pageTrigger === 2) {
             let SD = this.props.session;
             return (
-                <div className="viewSessionHolder">
+                <div className="viewSessionHolder" >
                     <div className="viewSessionBlock">
                         <div className="viewSessionHeaderHolder">
                             {
@@ -88,7 +95,7 @@ class Booking extends React.Component {
             )
         } else if (this.state.pageTrigger === 3) {
             return (
-                <div className="viewSessionHolder">
+                <div className="viewSessionHolder" >
                     <div className="viewSessionBlock">
                         <div className="sessionBookingSuccess">
                             <div className="bookingSuccessIcon"><img src={confirmedImg} /></div>
@@ -98,13 +105,13 @@ class Booking extends React.Component {
                         <div className="viewSessionButtons">
                             <button className="returnButton" onClick={() => this.props.clearSelectedSession()}>Close</button>
                         </div>
-                        
+
                     </div>
                 </div>
             )
         } else if (this.state.pageTrigger === 4) {
             return (
-                <div className="viewSessionHolder">
+                <div className="viewSessionHolder" >
                     <div className="viewSessionBlock">
                         <div className="sessionBookingFail">
                             <div className="bookingFailIcon"><img src={bookingFailImg} /></div>

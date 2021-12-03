@@ -20,6 +20,13 @@ class Menu extends React.Component {
         };
     }
 
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
     openMenuPage() {
         this.setState({ isShowMenu: !this.state.isShowMenu })
     }
