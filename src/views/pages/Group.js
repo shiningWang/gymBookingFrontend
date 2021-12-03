@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Navigate, useLocation } from "react-router-dom";
 import Utils from '../../Utils';
 
-import '../scss/Personal.scss';
+import '../scss/Group.scss';
 
 import Menu from './Menu';
 import Booking from './Booking';
@@ -18,15 +18,15 @@ import more from '../../images/more.svg';
 
 import loadingImg from '../../images/loading.svg';
 
-class Personal extends React.Component {
+class Group extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            personalSessionData: null,
-            personalSessionIndex: null,
+            groupSessionData: null,
+            groupSessionIndex: null,
             selectedSession: null,
         };
-        this.personalSessionsRequest = this.personalSessionsRequest.bind(this);
+        this.groupSessionsRequest = this.groupSessionsRequest.bind(this);
         this.clearSelectedSession = this.clearSelectedSession.bind(this);
     }
 
@@ -34,7 +34,7 @@ class Personal extends React.Component {
         if (this.props.currentUserData === null) {
             //pass
         } else {
-            this.personalSessionsRequest();
+            this.groupSessionsRequest();
         }
     }
 
@@ -42,8 +42,8 @@ class Personal extends React.Component {
         this.setState({ selectedSession: null })
     }
 
-    async personalSessionsRequest() {
-        let sessionResult = await Utils.fetchData("personal");
+    async groupSessionsRequest() {
+        let sessionResult = await Utils.fetchData("group");
         if (sessionResult.error) {
             console.log(sessionResult.message)
         } else {
@@ -65,7 +65,7 @@ class Personal extends React.Component {
                 }
             });
             let pSDT = Object.keys(pendingSortDate);
-            this.setState({ personalSessionData: pendingSortDate, personalSessionIndex: pSDT })
+            this.setState({ groupSessionData: pendingSortDate, groupSessionIndex: pSDT })
         }
     }
 
@@ -76,7 +76,7 @@ class Personal extends React.Component {
                 <Navigate to="/account" />
             )
         } else {
-            if (this.state.personalSessionData === null || this.state.personalSessionIndex === null) {
+            if (this.state.groupSessionData === null || this.state.groupSessionIndex === null) {
                 return (
                     <div className="pageLoadingScreenHolder">
                         <div className="pageLoading"><img src={loadingImg} /></div>
@@ -85,23 +85,23 @@ class Personal extends React.Component {
             } else {
                 return (
                     <React.Fragment>
-                        <div className="personalScreenHolder">
-                            <div className="personalHeaderHolder">
+                        <div className="groupScreenHolder">
+                            <div className="groupHeaderHolder">
                                 <Link style={{ textDecoration: "none" }} to="/sessions"><div className="headerGoBackButton">Back</div></Link>
-                                <div className="personalHeaderTitle">Personal Sessions</div>
+                                <div className="groupHeaderTitle">Group Fitness Sessions</div>
                             </div>
-                            <div className="personalImgIntroHolder">
-                                <div className="personalImgHolder"><img src={personalCharImg} /></div>
-                                <div className="personalIntro">Personal Training Session</div>
-                                <div className="personalSessionsQuan">4 Available Sessions</div>
+                            <div className="groupImgIntroHolder">
+                                <div className="groupImgHolder"><img src={groupCharImg} /></div>
+                                <div className="groupIntro">Group Training Session</div>
+                                <div className="groupSessionsQuan">4 Available Sessions</div>
                             </div>
-                            <div className="allPersonalSessions">
+                            <div className="allGroupSessions">
                                 {
-                                    this.state.personalSessionIndex.map((index) => (
+                                    this.state.groupSessionIndex.map((index) => (
                                         <div className="sessionDateHolder" key={index}>
-                                            <div className="sessionDateHeader">{Utils.sessionTime(this.state.personalSessionData[index][0].startTime)}</div>
+                                            <div className="sessionDateHeader">{Utils.sessionTime(this.state.groupSessionData[index][0].startTime)}</div>
                                             {
-                                                this.state.personalSessionData[index].map((session) => (
+                                                this.state.groupSessionData[index].map((session) => (
                                                     <div className="sessionBlock" key={session._id}>
                                                         {session.sessionType === 'yoga' && <div className="sessionIcon"><img src={yogaImg} /></div>}
                                                         {session.sessionType === 'group' && <div className="sessionIcon"><img src={groupImg} /> </div>}
@@ -131,4 +131,4 @@ class Personal extends React.Component {
     }
 }
 
-export default Personal;
+export default Group;

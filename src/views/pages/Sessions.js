@@ -18,51 +18,59 @@ class Sessions extends React.Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <div className="sessionsScreenHolder">
+        if (this.props.currentUserData === null) {
+            console.log("no user data")
+            return (
+                <Navigate to="/account" />
+            )
+        } else {
+            return (
+                <React.Fragment>
+                    <div className="sessionsScreenHolder">
 
-                    <div className="sessionsHeaderHolder">
-                        <div className="headerGoBackButton"><Link className="backButton" style={{ textDecoration: "none" }} to="/">Back</Link></div>
-                        <div className="sessionsHeaderTitle">All Future Sessions</div>
-                    </div>
+                        <div className="sessionsHeaderHolder">
+                            <div className="headerGoBackButton"><Link className="backButton" style={{ textDecoration: "none" }} to="/">Back</Link></div>
+                            <div className="sessionsHeaderTitle">All Future Sessions</div>
+                        </div>
 
-                    <div className="sessionTypeHolder">
-                        <div className="sessionImgHolder">
-                            <img className="sessionImg" src={yogaCharImg} />
+                        <div className="sessionTypeHolder">
+                            <div className="sessionImgHolder">
+                                <img className="sessionImg" src={yogaCharImg} />
+                            </div>
+                            <div className="sessionInfoHolder">
+                                <div className="sessionInfoHeader">Burn Fat Yoga</div>
+                                <div className="sessionInfoIntro">Special Asanas To Reduce Belly Fat</div>
+                                <Link style={{ textDecoration: "none" }} to="/yoga"><div className="sessionInfoButton">View Sessions</div></Link>
+                            </div>
                         </div>
-                        <div className="sessionInfoHolder">
-                            <div className="sessionInfoHeader">Burn Fat Yoga</div>
-                            <div className="sessionInfoIntro">Special Asanas To Reduce Belly Fat</div>
-                            <Link style={{ textDecoration: "none" }} to="/yoga"><div className="sessionInfoButton">View Sessions</div></Link>
-                        </div>
-                    </div>
 
-                    <div className="sessionTypeHolder">
-                        <div className="sessionImgHolder">
-                            <img className="sessionImg" src={groupCharImg} />
+                        <div className="sessionTypeHolder">
+                            <div className="sessionImgHolder">
+                                <img className="sessionImg" src={groupCharImg} />
+                            </div>
+                            <div className="sessionInfoHolder">
+                                <div className="sessionInfoHeader">Group Fitness</div>
+                                <div className="sessionInfoIntro">Ideal For Complete Body Workout</div>
+                                <Link style={{ textDecoration: "none" }} to="/group"><div className="sessionInfoButton">View Sessions</div></Link>
+                            </div>
                         </div>
-                        <div className="sessionInfoHolder">
-                            <div className="sessionInfoHeader">Group Fitness</div>
-                            <div className="sessionInfoIntro">Ideal For Complete Body Workout</div>
-                            <Link style={{ textDecoration: "none" }} to="/group"><div className="sessionInfoButton">View Sessions</div></Link>
-                        </div>
-                    </div>
 
-                    <div className="sessionTypeHolder">
-                        <div className="sessionImgHolder">
-                            <img className="sessionImg" src={personalCharImg} />
+                        <div className="sessionTypeHolder">
+                            <div className="sessionImgHolder">
+                                <img className="sessionImg" src={personalCharImg} />
+                            </div>
+                            <div className="sessionInfoHolder">
+                                <div className="sessionInfoHeader">Personal Training</div>
+                                <div className="sessionInfoIntro">Muscular Imbalances, Proper Form, And Good Posture</div>
+                                <Link style={{ textDecoration: "none" }} to="/personal"><div className="sessionInfoButton">View Sessions</div></Link>
+                            </div>
                         </div>
-                        <div className="sessionInfoHolder">
-                            <div className="sessionInfoHeader">Personal Training</div>
-                            <div className="sessionInfoIntro">Muscular Imbalances, Proper Form, And Good Posture</div>
-                            <Link style={{ textDecoration: "none" }} to="/personal"><div className="sessionInfoButton">View Sessions</div></Link>
-                        </div>
+                        <Menu currentUserData={this.props.currentUserData} />
                     </div>
-                    <Menu currentUserData={this.props.currentUserData} />
-                </div>
-            </React.Fragment>
-        )
+                </React.Fragment>
+            )
+        }
+
     }
 }
 

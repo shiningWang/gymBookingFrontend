@@ -16,6 +16,7 @@ import personalCharImg from '../../images/personalChar.svg';
 
 import bookingFailImg from '../../images/bookingFail.svg';
 import loadingImg from '../../images/loading.svg';
+import confirmedImg from '../../images/confirmed.svg';
 
 import Calendar from './Calendar';
 
@@ -42,6 +43,7 @@ class Createsession extends React.Component {
             // 2 is select session type and data page
             // 3 is loading page
             // 4 is back to admin home with message box
+            // 5 is showing added successful page
             pageTrigger: 1,
 
             currentType: "",
@@ -72,7 +74,8 @@ class Createsession extends React.Component {
             this.state.dateMonth < 0 ||
             this.state.dateYear < 0
         ) {
-            console.log("Please Select Date")
+            console.log("Please Select Date");
+            this.setState({ pageTrigger: 2 });
         } else if (
             parseInt(this.state.endHour, 10) === parseInt(this.state.startHour, 10) && parseInt(this.state.endMinute, 10) <= parseInt(this.state.startMinute, 10) ||
             parseInt(this.state.endHour, 10) < parseInt(this.state.startHour, 10)
@@ -91,7 +94,7 @@ class Createsession extends React.Component {
         if (
             this.state.dateDay < 0 ||
             this.state.dateMonth < 0 ||
-            this.state.dateYear < 0 || 
+            this.state.dateYear < 0 ||
             this.state.currentType === ""
         ) {
             console.log("Data Not Enough")
@@ -113,11 +116,13 @@ class Createsession extends React.Component {
             formData.append('sessionType', this.state.currentType);
             formData.append('attendeeLimit', this.state.attendeeLimit);
 
-            let deleteResponse = await Utils.createNewSession(formData);
-            if (deleteResponse.error) {
-                console.log(deleteResponse.message)
+            let createResponse = await Utils.createNewSession(formData);
+            if (createResponse.error) {
+                this.setState({ pageTrigger: 2 }, () => {
+                    console.log(createResponse.message)
+                })
             } else {
-                this.setState({ pageTrigger: 4 })
+                this.setState({ pageTrigger: 5 })
             }
         }
     }
@@ -230,6 +235,23 @@ class Createsession extends React.Component {
             } else if (this.state.pageTrigger === 4) {
                 return (
                     <Navigate to="/admin" />
+                )
+            } else if (this.state.pageTrigger === 5) {
+                return (
+                    <div className="viewSessionHolder">
+                        <div className="viewSessionBlock">
+                            <div className="sessionBookingSuccess">
+                                <div className="bookingSuccessIcon"><img src={confirmedImg} /></div>
+                                <div className="bookingSuccessTitle">Session Created</div>
+                            </div>
+
+                            <div className="viewSessionButtons">
+                                <button className="returnButton" onClick={()=>{this.setState({ pageTrigger: 4 })}}>Home</button>
+                                <button className="returnButton" onClick={()=>{this.setState({ pageTrigger: 1, dateDay: -1, dateMonth: -1, dateYear: -1, startHour: 8, startMinute: 30, endHour: 8, endMinute: 45, roomNumber: 105, attendeeLimit: 15, })}}>Create More</button>
+                            </div>
+
+                        </div>
+                    </div>
                 )
             }
         }

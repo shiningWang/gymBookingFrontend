@@ -12,6 +12,7 @@ import Mybookings from './views/pages/Mybookings';
 import Sessions from './views/pages/Sessions';
 import Yoga from './views/pages/Yoga';
 import Personal from './views/pages/Personal';
+import Group from './views/pages/Group';
 
 import Admin from './views/pages/Admin';
 import Createsession from './views/pages/Createsession';
@@ -53,6 +54,8 @@ class App extends React.Component {
               <Route path="/yoga" element={ < Yoga currentUserData={this.state.currentUserData} /> } />
 
               <Route path="/personal" element={ < Personal currentUserData={this.state.currentUserData} /> } />
+
+              <Route path="/group" element={ < Group currentUserData={this.state.currentUserData} /> } />
 
               <Route path="/admin" element={ < Admin currentUserData={this.state.currentUserData} />} />
 

@@ -1,4 +1,4 @@
-.personalScreenHolder {
+.groupScreenHolder {
     width: 100%;
     min-height: 100%;
 
@@ -14,7 +14,7 @@
     background: linear-gradient(to right bottom, #DDC4FC, #91C5FC);
 }
 
-.personalHeaderHolder {
+.groupHeaderHolder {
     width: 35%;
     min-width: 435px;
     padding-top: 1em;
@@ -36,7 +36,7 @@
         margin-bottom: 0.5em;
         color: black;
     }
-    .personalHeaderTitle {
+    .groupHeaderTitle {
         font-size: x-large;
         width: 80%;
         margin-left: auto;
@@ -45,7 +45,7 @@
     };
 }
 
-.personalImgIntroHolder {
+.groupImgIntroHolder {
     width: 35%;
     min-width: 435px;
     padding-top: 1em;
@@ -59,7 +59,7 @@
     align-items: center;
     flex-direction: column;
 
-    .personalImgHolder {
+    .groupImgHolder {
         width: 70%;
         display: flex;
         justify-content: center;
@@ -68,7 +68,7 @@
             max-width: 305px;
         }
     }
-    .personalIntro {
+    .groupIntro {
         font-size: x-large;
         width: 70%;
         margin-left: auto;
@@ -77,7 +77,7 @@
         text-align: center;
         color: #5F4591;
     }
-    .personalSessionsQuan {
+    .groupSessionsQuan {
         font-size: large;
         width: 70%;
         margin-left: auto;
@@ -87,7 +87,7 @@
     }
 }
 
-.allPersonalSessions {
+.allGroupSessions {
     width: 35%;
     min-width: 435px;
     padding-top: 2em;
@@ -152,14 +152,14 @@
 }
 
 @media screen and (max-width: 768px) {
-    .personalScreenHolder {
+    .groupScreenHolder {
         background: rgba(219, 216, 202, 0.3);
         display: flex;
         align-items: center;
         justify-content: flex-start;
         flex-direction: column;
     }
-    .personalHeaderHolder {
+    .groupHeaderHolder {
         width: 100%;
         height: 25%;
         min-width: 100%;
@@ -175,11 +175,11 @@
         .headerGoBackButton {
             width: 70%;
         }
-        .personalHeaderTitle {
+        .groupHeaderTitle {
             width: 70%;
         };
     }
-    .personalImgIntroHolder {
+    .groupImgIntroHolder {
         width: 100%;
         min-width: 100%;
         margin: 0;
@@ -195,7 +195,7 @@
 
         background: none;
 
-        .personalImgHolder {
+        .groupImgHolder {
             width: 70%;
             display: flex;
             justify-content: center;
@@ -204,7 +204,7 @@
                 max-width: 305px;
             }
         }
-        .personalSessionsQuan {
+        .groupSessionsQuan {
             font-size: large;
             width: 70%;
             margin-left: auto;
@@ -213,7 +213,7 @@
             text-align: center;
         }
     }
-    .allPersonalSessions {
+    .allGroupSessions {
         width: 100%;
         min-width: 100%;
         padding-top: 1em;

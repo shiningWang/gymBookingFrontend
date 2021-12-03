@@ -24,77 +24,150 @@ class Calendar extends React.Component {
     }
 
     goNextMonth() {
-        this.setState({ currentSelectedDate: null }, () => {
-            if (this.state.nowMonth === 11) {
-                let nextYear = this.state.nowYear + 1;
+        if(this.state.currentSelectedId != null) {
+            let removeDayDiv = document.getElementById(this.state.currentSelectedId);
+            removeDayDiv.className = "weekSpace";
+            this.setState({ currentSelectedId: null, currentSelectedDate: null })
+        }
+        
+        if (this.state.nowMonth === 11) {
+            let nextYear = this.state.nowYear + 1;
 
-                let nowDate = new Date(nextYear, 0, 1);
-                let nowMonth = nowDate.getMonth();
-                let nowDay = nowDate.getDate();
-                let nowYear = nowDate.getFullYear();
+            let nowDate = new Date(nextYear, 0, 1);
+            let nowMonth = nowDate.getMonth();
+            let nowDay = nowDate.getDate();
+            let nowYear = nowDate.getFullYear();
 
-                let days = null;
-                if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
-                    days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                } else if (nowYear % 400 === 0) {
-                    days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                } else {
-                    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                };
-
-                let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
-                let initWeekDay = getWeekDayPending.getDay() - 1;
-
-                console.log(initWeekDay)
-
-                let spaceInitMonth = [];
-                if(initWeekDay === 0){
-                    //pass
-                } else if(initWeekDay < 0) {
-                    spaceInitMonth = Array.from(Array(7-initWeekDay).keys())
-                }else {
-                    spaceInitMonth = Array.from(Array(initWeekDay).keys())
-                }
-                this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
-
+            let days = null;
+            if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else if (nowYear % 400 === 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
             } else {
-                let nextMonth = this.state.nowMonth + 1;
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            };
 
-                let nowDate = new Date(this.state.nowYear, nextMonth, 1);
-                let nowMonth = nowDate.getMonth();
-                let nowDay = nowDate.getDate();
-                let nowYear = nowDate.getFullYear();
+            let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
+            let initWeekDay = getWeekDayPending.getDay() - 1;
 
-                let days = null;
-                if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
-                    days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                } else if (nowYear % 400 === 0) {
-                    days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                } else {
-                    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                };
+            console.log(initWeekDay)
 
-                let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
-                let initWeekDay = getWeekDayPending.getDay() - 1;
-
-                console.log(initWeekDay)
-
-                let spaceInitMonth = [];
-                if(initWeekDay === 0){
-                    //pass
-                } else if(initWeekDay < 0) {
-                    spaceInitMonth = Array.from(Array(7-initWeekDay).keys())
-                }else {
-                    spaceInitMonth = Array.from(Array(initWeekDay).keys())
-                }
-                this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
+            let spaceInitMonth = [];
+            if (initWeekDay === 0) {
+                //pass
+            } else if (initWeekDay < 0) {
+                spaceInitMonth = Array.from(Array(7 - initWeekDay).keys())
+            } else {
+                spaceInitMonth = Array.from(Array(initWeekDay).keys())
             }
-        })
+            this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
+
+        } else {
+            let nextMonth = this.state.nowMonth + 1;
+
+            let nowDate = new Date(this.state.nowYear, nextMonth, 1);
+            let nowMonth = nowDate.getMonth();
+            let nowDay = nowDate.getDate();
+            let nowYear = nowDate.getFullYear();
+
+            let days = null;
+            if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else if (nowYear % 400 === 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else {
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            };
+
+            let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
+            let initWeekDay = getWeekDayPending.getDay() - 1;
+
+            console.log(initWeekDay)
+
+            let spaceInitMonth = [];
+            if (initWeekDay === 0) {
+                //pass
+            } else if (initWeekDay < 0) {
+                spaceInitMonth = Array.from(Array(7 - initWeekDay).keys())
+            } else {
+                spaceInitMonth = Array.from(Array(initWeekDay).keys())
+            }
+            this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
+        }
 
     }
 
     goLastMonth() {
-        alert('last')
+        if(this.state.currentSelectedId != null) {
+            let removeDayDiv = document.getElementById(this.state.currentSelectedId);
+            removeDayDiv.className = "weekSpace";
+            this.setState({ currentSelectedId: null, currentSelectedDate: null })
+        }
+
+        if (this.state.nowMonth === 0) {
+            let nextYear = this.state.nowYear - 1;
+
+            let nowDate = new Date(nextYear, 11, 1);
+            let nowMonth = nowDate.getMonth();
+            let nowDay = nowDate.getDate();
+            let nowYear = nowDate.getFullYear();
+
+            let days = null;
+            if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else if (nowYear % 400 === 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else {
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            };
+
+            let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
+            let initWeekDay = getWeekDayPending.getDay() - 1;
+
+            console.log(initWeekDay)
+
+            let spaceInitMonth = [];
+            if (initWeekDay === 0) {
+                //pass
+            } else if (initWeekDay < 0) {
+                spaceInitMonth = Array.from(Array(7 - initWeekDay).keys())
+            } else {
+                spaceInitMonth = Array.from(Array(initWeekDay).keys())
+            }
+            this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
+
+        } else {
+            let nextMonth = this.state.nowMonth - 1;
+
+            let nowDate = new Date(this.state.nowYear, nextMonth, 1);
+            let nowMonth = nowDate.getMonth();
+            let nowDay = nowDate.getDate();
+            let nowYear = nowDate.getFullYear();
+
+            let days = null;
+            if (nowYear % 4 === 0 && nowYear % 100 !== 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else if (nowYear % 400 === 0) {
+                days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            } else {
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            };
+
+            let getWeekDayPending = new Date(nowYear + "/" + (nowMonth + 1) + "/" + "1")
+            let initWeekDay = getWeekDayPending.getDay() - 1;
+
+            console.log(initWeekDay)
+
+            let spaceInitMonth = [];
+            if (initWeekDay === 0) {
+                //pass
+            } else if (initWeekDay < 0) {
+                spaceInitMonth = Array.from(Array(7 - initWeekDay).keys())
+            } else {
+                spaceInitMonth = Array.from(Array(initWeekDay).keys())
+            }
+            this.setState({ nowDay: nowDay, nowMonth: nowMonth, nowYear: nowYear, leapMonth: days, spaceInitMonth: spaceInitMonth });
+        }
     }
 
     componentDidMount() {
